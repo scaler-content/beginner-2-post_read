@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 2 · Prompt Engineering Basics — Post-Read</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Manrope:wght@300..800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf6ef;--bg2:#f3ecdf;--card:#ffffff;--card2:#f7f1e6;--line:#e4d9c5;--line2:#d8c9ac66;--ink:#2c241b;--ink2:#6b5f4f;--ink3:#7d7060;--orange:#9a3412;--orange2:#c2410c;--orange-dim:#9a341214;--teal:#0f766e;--teal-dim:#0f766e1a;--violet:#6d28d9;--violet-dim:#6d28d91a;--gold:#a16207;--rose:#be123c;--green:#15803d;--red:#b91c1c;--mono:'JetBrains Mono',monospace;--serif:'Fraunces',serif;--sans:'Manrope',sans-serif;--r:16px;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16.5px;line-height:1.7;-webkit-font-smoothing:antialiased}
+::selection{background:var(--orange);color:#fdf3e8}
+.wrap{max-width:1020px;margin:0 auto;padding:0 26px}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.22}
+a{color:var(--orange2)}
+strong{color:var(--ink)}
+em{color:var(--orange2);font-style:normal}
+p{color:var(--ink2)}
+p strong{color:var(--ink)}
+#progressBar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--gold));width:0;z-index:999;transition:width .1s linear}
+.topnav{position:sticky;top:0;background:#faf6efe8;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:900}
+.topnav .wrap{display:flex;align-items:center;gap:14px;padding-top:12px;padding-bottom:12px;overflow-x:auto;scrollbar-width:none}
+.topnav .wrap::-webkit-scrollbar{display:none}
+.brand{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--orange);white-space:nowrap}
+.topnav a.nl{font-size:12.5px;font-weight:600;color:var(--ink3);text-decoration:none;white-space:nowrap;padding:5px 10px;border-radius:20px;transition:.2s}
+.topnav a.nl:hover{color:var(--orange);background:var(--orange-dim)}
+.hero{position:relative;padding:88px 0 70px;overflow:hidden;background:radial-gradient(1100px 480px at 78% -12%,#ff8a2a14,transparent 60%),radial-gradient(800px 400px at 8% 110%,#3dd6c30e,transparent 60%)}
+.hero .eyebrow{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
+.chip{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.06em;padding:6px 13px;border-radius:100px;border:1px solid var(--line);color:var(--ink2);background:var(--card)}
+.chip.hot{border-color:#ff8a2a55;color:var(--orange2);background:var(--orange-dim)}
+.chip.cool{border-color:#3dd6c355;color:var(--teal);background:var(--teal-dim)}
+.hero h1{font-size:clamp(38px,6vw,64px);font-weight:640;letter-spacing:-.01em;margin-bottom:8px}
+.hero h1 .amp{color:var(--orange);font-style:italic;font-weight:500}
+.hero .sub{font-size:clamp(17px,2.2vw,21px);color:var(--ink2);max-width:740px;margin-top:16px}
+.hero .sub b{color:var(--ink)}
+.heroStats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:44px}
+.hstat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px}
+.hstat .n{font-family:var(--serif);font-size:30px;font-weight:640;color:var(--orange)}
+.hstat .l{font-size:12px;color:var(--ink3);font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-top:2px}
+@media(max-width:760px){.heroStats{grid-template-columns:repeat(2,1fr)}}
+.agenda{margin-top:50px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 28px}
+.agenda h3{font-size:14px;font-family:var(--sans);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:18px}
+.agRow{display:flex;align-items:center;gap:14px;padding:11px 0;border-bottom:1px dashed var(--line)}
+.agRow:last-child{border-bottom:none}
+.agRow .t{font-family:var(--mono);font-size:12px;color:var(--orange);min-width:86px;font-weight:500}
+.agRow .name{font-weight:600;font-size:15px;color:var(--ink)}
+.agRow .tag{margin-left:auto;font-size:11px;font-family:var(--mono);color:var(--ink3);border:1px solid var(--line);padding:3px 10px;border-radius:100px;white-space:nowrap}
+.agRow .tag.sim{color:var(--teal);border-color:#3dd6c344}
+.agRow .tag.quiz{color:var(--violet);border-color:#a48bff44}
+section.blk{padding:74px 0 30px}
+.secHead{display:flex;align-items:baseline;gap:18px;margin-bottom:8px}
+.secNum{font-family:var(--mono);font-size:13px;color:var(--orange);border:1px solid #ff8a2a55;background:var(--orange-dim);padding:5px 13px;border-radius:100px;font-weight:500;white-space:nowrap}
+.secHead h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.01em}
+.secTime{font-family:var(--mono);font-size:12px;color:var(--ink3);margin-left:auto;white-space:nowrap}
+.secLede{font-size:18px;color:var(--ink2);max-width:800px;margin:12px 0 34px}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:44px 0 0}
+.say{position:relative;background:linear-gradient(180deg,#1a1410,#161b24);border:1px solid #ff8a2a33;border-left:3px solid var(--orange);border-radius:14px;padding:20px 24px 20px 26px;margin:22px 0}
+.say .who{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);font-weight:700;margin-bottom:10px}
+.say p{color:#e8dccb;font-size:15.5px;margin-bottom:10px}
+.say p:last-child{margin-bottom:0}
+.say.ask{border-left-color:var(--teal);border-color:#3dd6c333;background:linear-gradient(180deg,#101a19,#161b24)}
+.say.ask .who{color:var(--teal)}
+.say.do{border-left-color:var(--violet);border-color:#a48bff33;background:linear-gradient(180deg,#141021,#161b24)}
+.say.do .who{color:var(--violet)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px 26px;margin:20px 0}
+.card h3{font-size:21px;margin-bottom:10px}
+.card h4{font-size:17px;margin-bottom:8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:820px){.grid2,.grid3,.grid4{grid-template-columns:1fr}}
+.defBox{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:20px 0;position:relative}
+.defBox::before{content:'DEFINITION';position:absolute;top:-10px;left:20px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--gold);background:var(--bg);padding:2px 10px;border:1px solid #ffd16644;border-radius:100px}
+.defBox .term{font-family:var(--serif);font-size:19px;color:var(--gold);font-weight:600}
+.defBox p{margin-top:6px;font-size:15.5px}
+.useCase{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;transition:.25s;position:relative;overflow:hidden}
+.useCase:hover{border-color:#ff8a2a66;transform:translateY(-3px)}
+.useCase .ico{font-size:26px;margin-bottom:8px}
+.useCase .co{font-family:var(--mono);font-size:11px;color:var(--orange);letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+.useCase h4{font-size:16px;margin:4px 0 6px;font-family:var(--sans);font-weight:700}
+.useCase p{font-size:13.5px;color:var(--ink2);line-height:1.55}
+.analogy{display:flex;gap:16px;background:linear-gradient(135deg,#f3ecfa,#ffffff);border:1px solid #6d28d933;border-radius:14px;padding:20px 24px;margin:20px 0}
+.analogy .ic{font-size:30px;line-height:1}
+.analogy .tt{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--violet);font-weight:700;margin-bottom:6px}
+.analogy p{font-size:15px;color:var(--ink2)}
+.analogy p b{color:var(--ink)}
+.note{border-radius:12px;padding:14px 18px;margin:16px 0;font-size:14.5px;border:1px solid var(--line);background:var(--card2);color:var(--ink2)}
+.note b{color:var(--ink)}
+.note.beg{border-color:#5fe08a44}.note.beg b{color:var(--green)}
+.note.adv{border-color:#ff6b8b44}.note.adv b{color:var(--rose)}
+.note.pro{border-color:#ffd16644}.note.pro b{color:var(--gold)}
+.note.danger{border-color:#ff616155;background:#fbe4e4}.note.danger b{color:var(--red)}
+.note.biz{border-color:#3dd6c344}.note.biz b{color:var(--teal)}
+.analogy.two{margin-top:-6px}
+table.tbl{width:100%;border-collapse:collapse;margin:18px 0;font-size:14.5px}
+table.tbl th{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);text-align:left;padding:10px 14px;border-bottom:1px solid #ff8a2a44;font-weight:500}
+table.tbl td{padding:11px 14px;border-bottom:1px solid var(--line);color:var(--ink2);vertical-align:top}
+table.tbl tr:hover td{background:#ffffff05}
+table.tbl td:first-child{color:var(--ink);font-weight:600}
+code.k{font-family:var(--mono);font-size:.86em;background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:2px 7px;color:var(--orange2)}
+pre.code{font-family:var(--mono);font-size:13px;line-height:1.7;background:#0a0d12;border:1px solid var(--line);border-radius:12px;padding:18px 22px;overflow-x:auto;margin:16px 0;color:#c7d2e0}
+pre.code .cm{color:#5b6b7f}
+pre.code .st{color:#8fd8a0}
+pre.code .fn{color:#7cc4ff}
+pre.code .kw{color:#ffb066}
+.sim{background:linear-gradient(180deg,#f2fbf9,#ffffff);border:1px solid #0f766e44;border-radius:20px;padding:26px 28px;margin:30px 0;position:relative}
+.sim::before{content:'\26A1 INTERACTIVE SIMULATOR';position:absolute;top:-12px;left:22px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--teal);background:var(--bg);padding:3px 12px;border:1px solid #3dd6c355;border-radius:100px;font-weight:700}
+.sim h3{font-size:20px;margin-bottom:4px}
+.sim .simSub{font-size:14px;color:var(--ink3);margin-bottom:18px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-weight:700;font-size:13.5px;color:#fdf3e8;background:linear-gradient(180deg,var(--orange2),var(--orange));border:none;border-radius:100px;padding:10px 20px;cursor:pointer;transition:.2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px #ff8a2a44}
+.btn.ghost{background:transparent;color:var(--ink2);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--orange);color:var(--orange);box-shadow:none}
+.btn.sm{padding:7px 15px;font-size:12.5px}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+input[type=range]{-webkit-appearance:none;width:100%;height:6px;border-radius:6px;background:var(--line);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--orange);cursor:pointer;border:3px solid #faf6ef;box-shadow:0 0 0 2px var(--orange)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--orange);cursor:pointer;border:3px solid #faf6ef}
+.quiz{background:linear-gradient(180deg,#faf5ff,#ffffff);border:1px solid #6d28d944;border-radius:20px;padding:26px 28px;margin:34px 0;position:relative}
+.quiz::before{content:'\2726 CHECKPOINT QUIZ';position:absolute;top:-12px;left:22px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--violet);background:var(--bg);padding:3px 12px;border:1px solid #a48bff55;border-radius:100px;font-weight:700}
+.quiz .q{font-family:var(--serif);font-size:19px;font-weight:600;margin:6px 0 18px;color:var(--ink)}
+.opt{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 17px;margin:9px 0;cursor:pointer;transition:.2s;font-size:14.5px;color:var(--ink2)}
+.opt:hover{border-color:var(--violet)}
+.opt .ab{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--violet);border:1px solid #a48bff55;border-radius:8px;min-width:26px;height:26px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.opt.correct{border-color:var(--green);background:#5fe08a12;color:var(--ink)}
+.opt.correct .ab{color:var(--green);border-color:var(--green)}
+.opt.wrong{border-color:var(--red);background:#ff616112;opacity:.75}
+.opt.wrong .ab{color:var(--red);border-color:var(--red)}
+.opt.locked{pointer-events:none}
+.quizWhy{display:none;margin-top:16px;border-top:1px dashed #a48bff44;padding-top:16px;font-size:14.5px;color:var(--ink2)}
+.quizWhy.show{display:block;animation:fadeUp .4s ease}
+.quizWhy b{color:var(--violet)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes popIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+@keyframes tin{to{opacity:1;transform:none}}
+.flipGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:20px 0}
+.flip{perspective:1200px;height:270px;cursor:pointer}
+.flipIn{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.flip.flipped .flipIn{transform:rotateY(180deg)}
+.flipFace{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;border:1px solid var(--line);padding:20px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:var(--card)}
+.flipFace.back{transform:rotateY(180deg);justify-content:flex-start;text-align:left;align-items:flex-start;background:var(--card2)}
+.flipFace .big{font-size:38px;margin-bottom:10px}
+.flipFace h4{font-size:17px;font-family:var(--serif)}
+.flipFace .mk{font-family:var(--mono);font-size:11px;color:var(--ink3);margin-top:4px}
+.flipFace.back h5{font-family:var(--serif);color:var(--orange);font-size:14px;margin-bottom:8px}
+.flipFace.back p{font-size:12px;color:var(--ink2);line-height:1.5;margin-bottom:8px}
+.flipHint{font-family:var(--mono);font-size:10px;color:var(--ink3);letter-spacing:.1em;margin-top:12px}
+.svgWrap{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin:24px 0;overflow-x:auto}
+.svgWrap svg{display:block;margin:0 auto;max-width:100%;height:auto}
+.svgCap{text-align:center;font-family:var(--mono);font-size:11.5px;color:var(--ink3);margin-top:14px;letter-spacing:.04em}
+.bigQuote{font-family:var(--serif);font-size:clamp(21px,3vw,28px);font-weight:500;font-style:italic;color:var(--ink);text-align:center;max-width:780px;margin:50px auto;line-height:1.5}
+.bigQuote em{color:var(--orange);font-style:italic}
+.footer{border-top:1px solid var(--line);margin-top:80px;padding:44px 0 60px;text-align:center}
+.footer p{font-size:13px;color:var(--ink3)}
+.counter{font-family:var(--serif);font-size:44px;color:var(--orange);font-weight:640;line-height:1}
+.pollBtns{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.pollBtn{font-family:var(--sans);font-weight:700;font-size:13px;background:var(--card2);color:var(--ink2);border:1px solid var(--line);border-radius:100px;padding:9px 18px;cursor:pointer;transition:.2s}
+.pollBtn:hover{border-color:var(--orange);color:var(--orange)}
+.pollBtn.sel{background:var(--orange-dim);border-color:var(--orange);color:var(--orange2)}
+/* scenario slack panel */
+.slackPanel{background:#0a0d12;border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:18px 22px;margin:18px 0;font-family:var(--mono);font-size:13px;color:#aab6c6;line-height:1.75}
+.slackPanel .sh{color:#3dd6c3;font-weight:700}
+.slackPanel .meta{color:#6d7a8c;font-size:11.5px;margin:4px 0 12px}
+.slackPanel ul{list-style:none;margin:0}
+.slackPanel li{padding:3px 0 3px 16px;position:relative}
+.slackPanel li::before{content:'–';position:absolute;left:0;color:var(--ink3)}
+.slackDrop{background:linear-gradient(120deg,#12201e,#0f1720);border:1px solid #3dd6c355;border-radius:14px;padding:16px 20px;margin:18px 0;display:flex;gap:14px;align-items:flex-start}
+.slackDrop .av{font-size:26px}
+.slackDrop .nm{font-weight:700;color:var(--teal);font-size:14px}
+.slackDrop .tm{font-family:var(--mono);font-size:10.5px;color:var(--ink3);margin-left:8px}
+.slackDrop p{font-size:14px;color:var(--ink2);margin-top:4px}
+/* prompt A/B toggle */
+.toggleRow{display:inline-flex;background:#f7f1e6;border:1px solid var(--line);border-radius:100px;padding:4px;margin-bottom:18px}
+.toggleRow button{font-family:var(--sans);font-weight:700;font-size:13px;border:none;background:transparent;color:var(--ink3);padding:8px 20px;border-radius:100px;cursor:pointer;transition:.2s}
+.toggleRow button.on{background:linear-gradient(180deg,var(--orange2),var(--orange));color:#fdf3e8}
+.abGrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:820px){.abGrid{grid-template-columns:1fr}}
+.promptBox{background:#0a0d12;border:1px solid var(--line);border-radius:14px;padding:16px 18px;font-family:var(--mono);font-size:12px;color:#c7d2e0;line-height:1.7;white-space:pre-wrap;max-height:340px;overflow-y:auto}
+.promptBox .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:#ff8a2a;display:block;margin-bottom:8px}
+.outBox{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;font-size:13.5px;color:var(--ink2);line-height:1.6;max-height:340px;overflow-y:auto}
+.outBox .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--green);display:block;margin-bottom:8px}
+.outBox h5{font-family:var(--serif);color:var(--ink);font-size:15px;margin:10px 0 4px}
+.outBox .sec{font-weight:700;color:var(--orange2);margin-top:10px;font-size:13px}
+.outBox table{width:100%;border-collapse:collapse;font-size:11.5px;margin:6px 0}
+.outBox th{color:var(--teal);text-align:left;padding:4px 6px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px}
+.outBox td{padding:4px 6px;border-bottom:1px solid var(--line2);vertical-align:top}
+.gapCallout{background:#fdf1e0;border:1px solid #ffd16655;border-radius:12px;padding:14px 18px;margin-top:16px;font-size:14px;color:var(--ink2)}
+.gapCallout b{color:var(--gold)}
+/* RCTFC builder */
+.chipRow{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.rctfcChip{font-family:var(--sans);font-weight:700;font-size:13px;border:1px solid var(--line);background:#f7f1e6;color:var(--ink2);border-radius:12px;padding:10px 16px;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:8px}
+.rctfcChip .let{font-family:var(--mono);font-weight:800;color:var(--orange)}
+.rctfcChip:hover{border-color:var(--orange)}
+.rctfcChip.on{border-color:var(--teal);background:#e6f6f4;color:var(--teal)}
+.rctfcChip.on .let{color:var(--teal)}
+.qmeter{height:14px;background:#ede4d1;border:1px solid var(--line);border-radius:100px;overflow:hidden;margin:8px 0}
+.qmeterFill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--red),var(--gold),var(--green));width:0;transition:width .5s}
+.qLabel{font-family:var(--mono);font-size:12px;color:var(--ink3);text-align:right}
+.buildPreview{background:#0a0d12;border:1px solid var(--line);border-radius:14px;padding:16px 18px;min-height:160px;font-family:var(--mono);font-size:12.5px;color:#c7d2e0;line-height:1.8;margin-top:14px}
+.buildPreview .pl{color:var(--orange2);font-weight:700}
+.buildPreview .empty{color:var(--ink3);font-style:italic}
+/* few-shot switch */
+.fsGrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+@media(max-width:820px){.fsGrid{grid-template-columns:1fr}}
+.fsCol{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.fsCol.zero{border-color:#ff6b8b44}.fsCol.few{border-color:#5fe08a44}
+.fsCol h4{font-family:var(--sans);font-weight:800;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
+.fsCol.zero h4{color:var(--rose)}.fsCol.few h4{color:var(--green)}
+.fsField{font-family:var(--mono);font-size:12px;padding:6px 10px;border-radius:8px;margin:6px 0;background:#f7f1e6;border:1px solid var(--line);color:var(--ink2)}
+.fsField.newf{border-color:var(--green);background:#e6f6ec;color:var(--green);animation:popIn .4s ease both}
+/* CoT stepper */
+.stepList{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.step{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;opacity:.25;transition:.4s;transform:translateX(-6px)}
+.step.on{opacity:1;transform:none;border-color:#3dd6c355}
+.step .sn{font-family:var(--mono);font-size:11px;color:var(--teal);border:1px solid #3dd6c355;border-radius:8px;min-width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step p{font-size:14px;color:var(--ink2)}
+.step p b{color:var(--ink)}
+.cotVs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+@media(max-width:820px){.cotVs{grid-template-columns:1fr}}
+.cotAns{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.cotAns.shallow{border-color:#ff6b8b44}
+.cotAns.deep{border-color:#5fe08a44}
+.cotAns h5{font-family:var(--sans);font-weight:800;font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.cotAns.shallow h5{color:var(--rose)}.cotAns.deep h5{color:var(--green)}
+.cotAns ul{list-style:none;font-size:13px}
+.cotAns li{padding:5px 0 5px 18px;position:relative;color:var(--ink2)}
+.cotAns.shallow li::before{content:'\2022';position:absolute;left:4px;color:var(--rose)}
+.cotAns.deep li::before{content:'\21B3';position:absolute;left:0;color:var(--green)}
+.cotAns.deep{opacity:.3;transition:.5s}.cotAns.deep.reveal{opacity:1}
+/* output format tabs */
+.fmtTabs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.fmtTab{font-family:var(--sans);font-weight:700;font-size:13px;border:1px solid var(--line);background:#f7f1e6;color:var(--ink2);border-radius:10px;padding:9px 16px;cursor:pointer;transition:.2s}
+.fmtTab:hover{border-color:var(--orange)}
+.fmtTab.on{border-color:var(--teal);background:#e6f6f4;color:var(--teal)}
+.fmtOut{background:#0a0d12;border:1px solid var(--line);border-radius:14px;padding:18px 20px;font-size:13.5px;color:#aab6c6;line-height:1.6;min-height:180px}
+.fmtOut .cap{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:#ffd166;text-transform:uppercase;margin-bottom:10px}
+.fmtOut.json{font-family:var(--mono);font-size:12px;color:#c7d2e0;white-space:pre-wrap}
+.fmtOut table{width:100%;border-collapse:collapse;font-size:12px}
+.fmtOut th{color:#3dd6c3;text-align:left;padding:5px 7px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px}
+.fmtOut td{padding:5px 7px;border-bottom:1px solid var(--line2);vertical-align:top}
+.fmtOut ol{padding-left:20px}.fmtOut li{padding:4px 0}
+.fmtOut h5{font-family:var(--serif);color:#eef2f7;font-size:15px;margin:8px 0 4px}
+.jn{color:#ffd166}.jv{color:#8fd8a0}.jk2{color:#7cc4ff}.jp2{color:#6d7a8c}
+/* refinement slider */
+.roundHead{display:flex;align-items:center;gap:14px;margin:14px 0}
+.roundBadge{font-family:var(--serif);font-size:28px;color:var(--orange);font-weight:640}
+.roundLabel{font-weight:700;color:var(--ink);font-size:16px}
+.roundEl{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--teal);border:1px solid #3dd6c344;padding:4px 12px;border-radius:100px}
+.qbar{height:12px;background:#ede4d1;border:1px solid var(--line);border-radius:100px;overflow:hidden;margin:10px 0}
+.qbarFill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--red),var(--gold),var(--green));width:0;transition:width .6s}
+.roundGrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+@media(max-width:820px){.roundGrid{grid-template-columns:1fr}}
+.roundBox{background:#0a0d12;border:1px solid var(--line);border-radius:14px;padding:16px 18px;font-family:var(--mono);font-size:12px;color:#c7d2e0;line-height:1.7;white-space:pre-wrap;min-height:150px}
+.roundBox .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:#ff8a2a;display:block;margin-bottom:8px}
+.roundOut{font-family:var(--sans);white-space:normal;color:#aab6c6}
+.roundOut .lbl{color:#5fe08a}
+.changeNote{background:#fdf1e0;border:1px solid #ffd16655;border-radius:12px;padding:12px 16px;margin-top:14px;font-size:14px;color:var(--ink2)}
+.changeNote b{color:var(--gold)}
+/* challenge cards */
+.chalCard{background:var(--card);border:1px solid var(--line);border-radius:16px;margin:18px 0;overflow:hidden;transition:.25s}
+.chalCard.open{border-color:#3dd6c366}
+.chalHead{display:flex;align-items:center;gap:14px;padding:18px 22px;cursor:pointer}
+.chalHead .cn{font-family:var(--mono);font-size:12px;color:var(--teal);border:1px solid #3dd6c355;border-radius:8px;padding:4px 10px;font-weight:700}
+.chalHead h4{font-family:var(--serif);font-size:19px;flex:1}
+.chalHead .chev{font-family:var(--mono);color:var(--ink3);transition:.3s}
+.chalCard.open .chev{transform:rotate(90deg);color:var(--teal)}
+.chalBody{display:none;padding:0 22px 22px}
+.chalCard.open .chalBody{display:block;animation:fadeUp .4s ease}
+.chalBody .cLabel{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin:16px 0 6px}
+.chalBody .mission{color:var(--ink2);font-size:14.5px}
+.chalTags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chalTags span{font-family:var(--mono);font-size:11px;color:var(--violet);border:1px solid #a48bff44;padding:3px 10px;border-radius:100px}
+.passList{list-style:none;margin-top:6px}
+.passList li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--line);cursor:pointer;font-size:14px;color:var(--ink2)}
+.passList li:last-child{border-bottom:none}
+.passList .box{width:22px;height:22px;border:1px solid var(--line);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);color:var(--green);transition:.2s}
+.passList li.checked .box{border-color:var(--green);background:#5fe08a18}
+.passList li.checked{color:var(--ink)}
+.passScore{font-family:var(--mono);font-size:12px;color:var(--gold);border:1px solid #ffd16655;background:#ffd16611;border-radius:100px;padding:6px 14px;margin-top:12px;display:inline-block}
+.slackThread{background:#0a0d12;border:1px solid var(--line);border-radius:12px;padding:14px 18px;font-family:var(--mono);font-size:12px;line-height:1.9;color:#aab6c6}
+.slackThread .ts{color:#6d7a8c}
+.slackThread .u{color:#3dd6c3;font-weight:700}
+/* wrap game */
+.matchScenario{background:#0a0d12;border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-size:15px;color:#eef2f7;margin-bottom:14px;min-height:56px}
+.matchScenario span{color:#6d7a8c;font-family:var(--mono);font-size:11px;display:block;margin-bottom:6px;letter-spacing:.1em}
+.matchBtns{display:flex;flex-wrap:wrap;gap:10px}
+.matchBtn{font-family:var(--sans);font-weight:700;font-size:13px;border:1px solid var(--line);background:#f7f1e6;color:var(--ink2);border-radius:10px;padding:10px 16px;cursor:pointer;transition:.2s}
+.matchBtn:hover{border-color:var(--orange)}
+.matchBtn.right{border-color:var(--green);background:#e6f6ec;color:var(--green)}
+.matchBtn.wrong{border-color:var(--red);background:#fbe4e4;color:var(--rose)}
+.matchWhy{margin-top:14px;font-size:14px;color:var(--ink2);min-height:24px}
+.matchWhy b{color:var(--teal)}
+.matchScore{font-family:var(--mono);font-size:12px;color:var(--gold);border:1px solid #ffd16655;background:#ffd16611;border-radius:100px;padding:6px 14px;display:inline-block;margin-top:6px}
+</style>
+</head>
+<body>
+<div id="progressBar"></div>
+<nav class="topnav"><div class="wrap">
+<span class="brand">AIML · Class 2 · Post-Read</span>
+<a class="nl" href="#scenario">Scenario</a>
+<a class="nl" href="#s1">Two Prompts</a>
+<a class="nl" href="#s2">RCTFC</a>
+<a class="nl" href="#s3">Few-Shot + Format</a>
+<a class="nl" href="#s4">Chain-of-Thought</a>
+<a class="nl" href="#s5">5 Rounds</a>
+<a class="nl" href="#s6">Challenges</a>
+<a class="nl" href="#s7">Wrap-Up</a>
+</div></nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">
+    <span class="chip hot">CLASS 02 / POST-READ</span>
+    <span class="chip">⏱ 120 MINUTES</span>
+    <span class="chip cool">PROMPT ENGINEERING</span>
+    <span class="chip">HANDS-ON</span>
+  </div>
+  <h1>Prompt Engineering <span class="amp">Basics</span></h1>
+  <p class="sub">Same AI. Same notes. Wildly different results. Today you learn the six techniques that separate a useless wall of text from output a senior data scientist would ship. Everything runs on <b>one story: Aisha's design review.</b></p>
+  <div class="heroStats">
+    <div class="hstat"><div class="n" data-count="6">0</div><div class="l">Techniques</div></div>
+    <div class="hstat"><div class="n" data-count="7">0</div><div class="l">Live Simulators</div></div>
+    <div class="hstat"><div class="n" data-count="5">0</div><div class="l">Checkpoint Quizzes</div></div>
+    <div class="hstat"><div class="n" data-count="2">0</div><div class="l">Prompt Challenges</div></div>
+  </div>
+  
+</div></header>
+
+<!-- ============ SCENARIO ============ -->
+<section class="blk" id="scenario"><div class="wrap">
+  <div class="secHead"><span class="secNum">SETUP</span><h2>The Scenario — Aisha's Design Review</h2><span class="secTime">⏱ 8 min</span></div>
+  <p class="secLede">Everything today connects back to one story. Read it once carefully. Every technique will help Aisha get progressively better results from this same raw material.</p>
+
+  
+
+  
+
+  <div class="slackPanel">
+    <div class="sh">Model Design Review — Customer Churn Prediction Project</div>
+    <div class="meta">11 April 2025, 10:00–10:50 AM · Attendees: Priya (DS Lead), Aisha (ML Engineer, new joiner), Karan (Data Engineer), Neha (MLOps), Vikram (PM)</div>
+    <ul>
+      <li>current churn model is rule-based at 68% accuracy, business needs 85%+ for retention campaigns</li>
+      <li>build the new system in 3 stages: feature-pipeline, training-pipeline, prediction-service</li>
+      <li>prediction-service must mask personal info (PII) before it ever reaches the model</li>
+      <li>aisha to build first working version using XGBoost by 25 apr, priya reviews</li>
+      <li>karan needs the final feature list ready by 20 apr so aisha can start training</li>
+      <li>raw events → data warehouse, processed features → feature store, neha wants version tracking from day one</li>
+      <li>automated retraining: new data lands → feature-pipeline processes → training-pipeline retrains on schedule</li>
+      <li>monitoring: debated data drift vs accuracy, no decision, priya wants comparison doc by 18 apr, nobody assigned</li>
+      <li>vikram: what happens to customers flagged mid-way through a model update? need safe model-switch</li>
+      <li>dashboards: neha sets up monitoring dashboards, needs model health metrics list by 22 apr</li>
+      <li>testing: neha wants a holdout test before go-live, no date, depends on aisha's prototype</li>
+      <li>fairness check: discussed, no decision on bias metrics or thresholds</li>
+      <li>rollback plan: not discussed, priya says add to next review agenda</li>
+      <li>next review: 18 apr same time</li>
+    </ul>
+  </div>
+
+  <p style="font-family:var(--sans);font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin:30px 0 6px">Quick vocabulary — tap each card to flip</p>
+  <div class="flipGrid">
+    <div class="flip"><div class="flipIn">
+      <div class="flipFace"><div class="big">🔗</div><h4>ML Pipeline</h4><div class="mk">feature → training → serving</div><div class="flipHint">TAP TO FLIP ↻</div></div>
+      <div class="flipFace back"><h5>One big process → small stages</h5><p>Instead of one giant script, split into: <b>feature-pipeline</b> (prepares signals), <b>training-pipeline</b> (trains the model), <b>prediction-service</b> (answers "will this customer churn?" live).</p><p style="color:var(--teal)">Each part is built, tested, and improved on its own.</p></div>
+    </div></div>
+    <div class="flip"><div class="flipIn">
+      <div class="flipFace"><div class="big">🔒</div><h4>PII Masking</h4><div class="mk">data privacy</div><div class="flipHint">TAP TO FLIP ↻</div></div>
+      <div class="flipFace back"><h5>Disguise personal info</h5><p>Remove or replace names, emails, phone numbers before data reaches the model, so nothing traces back to an individual.</p><p style="color:var(--teal)">The model learns from buying patterns without ever "seeing" who the customer is.</p></div>
+    </div></div>
+    <div class="flip"><div class="flipIn">
+      <div class="flipFace"><div class="big">♻️</div><h4>Automated Retraining</h4><div class="mk">no manual "go" button</div><div class="flipHint">TAP TO FLIP ↻</div></div>
+      <div class="flipFace back"><h5>The model updates itself</h5><p>New data comes in, gets processed, and feeds training on a schedule — no one pressing "retrain" each time.</p><p style="color:var(--teal)">Weekly, fresh activity flows in so the model doesn't go stale as behavior changes.</p></div>
+    </div></div>
+  </div>
+  <div class="gapCallout"><b>13 minutes on the clock.</b> Aisha opens her AI chat window. What she types in the next few seconds decides whether Priya's reply is a 👍 or a 😬. Let's watch her first attempt.</div>
+  <div class="divider"></div>
+</div></section>
+
+<!-- ============ SECTION 1 ============ -->
+<section class="blk" id="s1"><div class="wrap">
+  <div class="secHead"><span class="secNum">§ 1</span><h2>Why Two People Get Different Results</h2><span class="secTime">⏱ 17 min</span></div>
+  <p class="secLede">The gap between a useless AI response and a brilliant one almost never comes down to which model you use. It comes down to how you ask. That skill has a name: prompt engineering.</p>
+
+  <div class="defBox"><span class="term">Prompt Engineering</span>
+    <p>Crafting your input to an AI model to maximize the quality, relevance, and usefulness of the output. Not tricking the AI — communicating clearly with it.</p>
+  </div>
+
+  <div class="analogy"><div class="ic">💬</div><div><div class="tt">Analogy · The Vague Bug Report</div>
+    <p>"The model isn't working" vs "validation accuracy dropped from 85% to 61% right after last week's retrain — can you check if the new training data is leaking future info into the features?" Both ask for help. One gets an answer in ten minutes. The other wastes a day just decoding what you meant.</p></div>
+  </div>
+
+  <div class="sim">
+    <h3>🔀 SIM 1 · Same Notes, Two Prompts</h3>
+    <p class="simSub">Same model, same source notes. Toggle between Aisha's first attempt and her structured version. Read the prompt on the left, its actual output on the right.</p>
+    <div class="toggleRow" id="abToggle">
+      <button class="on" data-ab="a">Prompt A · no structure</button>
+      <button data-ab="b">Prompt B · structured</button>
+    </div>
+    <div class="abGrid">
+      <div class="promptBox" id="abPrompt"></div>
+      <div class="outBox" id="abOut"></div>
+    </div>
+    <div class="gapCallout" id="abGap"></div>
+  </div>
+
+  
+
+  
+
+  
+
+  <div class="quiz">
+    <p class="q">Quiz 1 · Why did Prompt B produce dramatically better output than Prompt A, even though both used the same model and same source notes?</p>
+    <div class="opt" data-r="w"><span class="ab">A</span>Prompt B used a more powerful AI model behind the scenes</div>
+    <div class="opt" data-r="w"><span class="ab">B</span>Prompt B was longer, and longer prompts always produce better results</div>
+    <div class="opt" data-r="c"><span class="ab">C</span>Prompt B provided clear structure — role, context, format, and constraints — that guided the model's output</div>
+    <div class="opt" data-r="w"><span class="ab">D</span>Prompt B included secret keywords that activate better AI performance</div>
+    <div class="quizWhy"><b>Why C?</b> Length alone doesn't help — a 500-word vague prompt still returns garbage. What matters is structure and specificity. Prompt B told the model WHO it was, WHAT it was working with, WHAT format to use, and WHAT rules to follow. Same AI, dramatically different outcome.</div>
+  </div>
+  <div class="divider"></div>
+</div></section>
+
+<!-- ============ SECTION 2 ============ -->
+<section class="blk" id="s2"><div class="wrap">
+  <div class="secHead"><span class="secNum">§ 2</span><h2>The RCTFC Framework</h2><span class="secTime">⏱ 20 min</span></div>
+  <p class="secLede">What made Prompt B better? A five-part structure that works for every prompt you'll ever write: Role, Context, Task, Format, Constraints.</p>
+
+  <div class="analogy"><div class="ic">🍽️</div><div><div class="tt">Analogy · Ordering at a Restaurant</div>
+    <p>"Give me food" vs "the grilled paneer tikka (<b>Task</b>), medium spice (<b>Constraint</b>), rice not naan (<b>Format</b>), I'm allergic to nuts (<b>Context</b>), and I trust your chef's seasoning (<b>Role</b>)." Same kitchen, wildly different meal. AI responds to specificity the same way.</p></div>
+  </div>
+
+  <div class="analogy two"><div class="ic">📋</div><div><div class="tt">Second Analogy · Writing a Job Posting</div>
+    <p>A good JD names the <b>role</b> ("Senior Backend Engineer"), gives <b>context</b> (team, product stage), states the <b>task</b> (responsibilities), fixes a <b>format</b> (resume + portfolio link), and sets <b>constraints</b> (experience range, salary band). A vague JD gets you fifty mismatched resumes. A precise one gets you three great ones. Same five ingredients, same effect on an AI prompt.</p></div>
+  </div>
+
+  <div class="defBox"><span class="term">RCTFC Framework</span>
+    <p>A five-part structure for effective prompts: <b>R</b>ole, <b>C</b>ontext, <b>T</b>ask, <b>F</b>ormat, <b>C</b>onstraints. Together they give the AI everything it needs to produce exactly what you want.</p>
+  </div>
+
+  <div class="sim">
+    <h3>🧱 SIM 2 · RCTFC Builder</h3>
+    <p class="simSub">Click each element to add it to Aisha's prompt. Watch the prompt assemble and the quality meter climb from Vague to Production-ready.</p>
+    <div class="chipRow" id="rctfcChips">
+      <div class="rctfcChip" data-k="R"><span class="let">R</span> Role</div>
+      <div class="rctfcChip" data-k="C1"><span class="let">C</span> Context</div>
+      <div class="rctfcChip" data-k="T"><span class="let">T</span> Task</div>
+      <div class="rctfcChip" data-k="F"><span class="let">F</span> Format</div>
+      <div class="rctfcChip" data-k="C2"><span class="let">C</span> Constraints</div>
+    </div>
+    <div class="qmeter"><div class="qmeterFill" id="qmeterFill"></div></div>
+    <div class="qLabel" id="qLabel">Quality: 0/5 — nothing yet</div>
+    <div class="buildPreview" id="buildPreview"><span class="empty">Click an element above to start building the prompt...</span></div>
+    <button class="btn sm ghost" id="rctfcReset" style="margin-top:14px">↻ Reset</button>
+  </div>
+
+  <table class="tbl"><thead><tr><th>Element</th><th>What Prompt B Said</th><th>What It Prevented</th></tr></thead><tbody>
+    <tr><td>Role</td><td>"senior data scientist"</td><td>An intern-level surface summary</td></tr>
+    <tr><td>Context</td><td>"junior ML engineer, design review, posted in Slack for sprint planning"</td><td>Wrong audience / tone</td></tr>
+    <tr><td>Task</td><td>"Turn raw notes into structured summary"</td><td>Rambling or wrong deliverable</td></tr>
+    <tr><td>Format</td><td>"Overview, Decisions, Action Items table, Open Questions, Risks"</td><td>Wall-of-text output</td></tr>
+    <tr><td>Constraints</td><td>"Under 500 words, TBD for unknowns, don't invent"</td><td>Making things up, bloat</td></tr>
+  </tbody></table>
+
+  <p style="font-family:var(--sans);font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin:30px 0 6px">RCTFC in three domains — it's not just for meeting notes</p>
+  <table class="tbl"><thead><tr><th>Domain</th><th>Role</th><th>Context</th><th>Task</th><th>Format</th><th>Constraints</th></tr></thead><tbody>
+    <tr><td>Summary</td><td>Senior DS</td><td>Design review notes</td><td>Structured summary</td><td>5 sections</td><td>&lt;500 words, TBD unknowns</td></tr>
+    <tr><td>SQL generation</td><td>Senior data engineer</td><td>Customers table, columns listed</td><td>Write query for a specific question</td><td>Postgres SQL, formatted</td><td>No SELECT *, use CTEs</td></tr>
+    <tr><td>Post-mortem</td><td>SRE lead</td><td>Slack incident thread</td><td>Blameless post-mortem</td><td>5-Whys sections</td><td>Exact timeline, no blame</td></tr>
+  </tbody></table>
+
+  <p class="bigQuote">Both a great prompt and a great problem statement follow the same principle: <em>specificity in, quality out.</em></p>
+
+  <div class="note danger"><b>Danger case — contradictory constraints:</b> Aisha writes Task: "include the full raw transcript of every speaker" and Constraints: "under 500 words." The model can't do both — it either blows past the word limit or silently drops the transcript, and you won't know which without checking. RCTFC only helps when its five elements agree with each other.</div>
+  <div class="note beg"><b>Beginner note:</b> You don't need all five elements every time. For "What does overfitting mean?", just the Task is enough. For anything needing more than a one-line answer, RCTFC is your go-to.</div>
+  <div class="note pro"><b>Pro note:</b> The five elements don't have to appear in R-C-T-F-C order. Some of the best prompts open with the Task and close with Constraints. What matters is that all five show up somewhere — not the sequence.</div>
+  <div class="note adv"><b>Advanced note:</b> In production, Role + Context + Constraints are often encoded as a persistent <b>system prompt</b> that stays constant across interactions, while Task + Format change per request.</div>
+  <div class="note biz"><b>In the industry:</b> OpenAI's own developer docs teach prompt structure around this same idea — role, context, and constraints up front. RCTFC just adds an explicit Role slot because it matters even more once a prompt goes into a real product.</div>
+
+  
+  
+  <div class="divider"></div>
+</div></section>
+
+<!-- ============ SECTION 3 ============ -->
+<section class="blk" id="s3"><div class="wrap">
+  <div class="secHead"><span class="secNum">§ 3</span><h2>Few-Shot Prompting + Output Formatting</h2><span class="secTime">⏱ 30 min</span></div>
+  <p class="secLede">RCTFC gives structure. But when output must match a very specific format — your team's template — instructions alone can't capture the nuance. Instead of describing the format, you SHOW it. Both few-shot and format control are about the same thing: controlling the <em>shape</em> of the output.</p>
+
+  <div class="analogy"><div class="ic">👥</div><div><div class="tt">Analogy · Onboarding a New Teammate</div>
+    <p>Telling a new hire "write it up clearly" is <b>zero-shot</b> — they guess. Showing them three of your team's best experiment write-ups and saying "document it like this" is <b>few-shot</b>. Same person, dramatically better first draft.</p></div>
+  </div>
+
+  <div class="analogy two"><div class="ic">🎨</div><div><div class="tt">Second Analogy · Style Transfer</div>
+    <p>Words often fail where examples succeed. You can't fully describe "paint like Van Gogh" in a sentence — but hand an artist three Van Gogh paintings and say "more like this," and they get it instantly. Few-shot prompting is the same move: stop describing the style, show it.</p></div>
+  </div>
+
+  <div class="grid2">
+    <div class="defBox" style="margin:0"><span class="term">Zero-Shot</span><p>Instructions without any examples. You describe what you want; the model picks a format on its own.</p></div>
+    <div class="defBox" style="margin:0"><span class="term">Few-Shot</span><p>2–3 examples of the exact output you want, then the task. The examples teach the model your specific style.</p></div>
+  </div>
+
+  <div class="note danger"><b>Danger case — inconsistent examples:</b> Aisha grabs 3 old action-item messages fast — but one uses "Owner:", another uses "Assigned to:", and the third skips priority entirely. Few-shot with inconsistent examples doesn't average them into a clean format — it confuses the model into blending fields unpredictably. Bad examples are worse than no examples.</div>
+
+  <div class="sim">
+    <h3>🔃 SIM 3 · Zero-Shot vs Few-Shot Switch</h3>
+    <p class="simSub">Same task: extract action items from Aisha's notes. Flip the switch and watch few-shot gain the exact fields your team's template uses — highlighted in green.</p>
+    <div class="toggleRow" id="fsToggle">
+      <button class="on" data-fs="zero">Zero-Shot · no examples</button>
+      <button data-fs="few">Few-Shot · 3 examples</button>
+    </div>
+    <div class="fsGrid">
+      <div class="fsCol zero"><h4>The Prompt</h4><div id="fsPromptDesc" style="font-size:13px;color:var(--ink2);margin-top:10px"></div></div>
+      <div class="fsCol few"><h4>One Extracted Action Item</h4><div id="fsFields" style="margin-top:10px"></div></div>
+    </div>
+    <div class="gapCallout" id="fsGap"></div>
+  </div>
+
+  
+
+  <div class="note adv"><b>Advanced note:</b> More examples isn't always better. Past ~5 examples, the model can start over-fitting to quirks of your specific examples rather than the general pattern. 2-3 well-chosen examples is the sweet spot for most tasks.</div>
+  <div class="note biz"><b>In the industry:</b> Zomato's support bot reportedly uses few-shot prompting with 3-5 previous ticket resolutions as examples — that's how a generic model ends up sounding like it always has.</div>
+
+  <div class="quiz">
+    <p class="q">Quiz 2 · Your team has a specific Model Card format with sections like "Intended Use," "Training Data," "Performance," and "Limitations" in a very particular style. You want the AI to produce one in exactly this format. Which approach is most effective?</p>
+    <div class="opt" data-r="w"><span class="ab">A</span>Zero-shot: describe the format in words and trust the model to figure it out</div>
+    <div class="opt" data-r="c"><span class="ab">B</span>Few-shot: paste 2-3 examples of your team's actual model cards, then ask the model to produce one</div>
+    <div class="opt" data-r="w"><span class="ab">C</span>Just ask "Write a model card" and manually reformat afterward</div>
+    <div class="opt" data-r="w"><span class="ab">D</span>Use a higher temperature setting for more creative formatting</div>
+    <div class="quizWhy"><b>Why B?</b> When output must match a specific template, showing beats telling. You don't hand a new teammate a 20-page style guide — you show them three great model cards and say "do it like this."</div>
+  </div>
+
+  <div class="divider" style="margin:44px 0"></div>
+  <p class="secLede" style="margin-top:0">Few-shot solved the template problem for one audience. But Aisha's notes need to reach four different audiences — a Slack update, a sprint tracker, a JSON payload for another tool, and a formal model card. Same information, four shapes. That's <b>output formatting</b>.</p>
+
+  <div class="defBox"><span class="term">Output Formatting</span>
+    <p>Explicitly defining the structure, shape, and style of the AI's response. Like writing <code class="k">SELECT customer_id, churn_score FROM customers</code> instead of "give me customer data" — you get exactly what you specified.</p>
+  </div>
+
+  <div class="analogy two"><div class="ic">🔌</div><div><div class="tt">Second Analogy · The API Contract</div>
+    <p>The AI is your junior dev. You wouldn't say "give me some data" and hope — you'd say "return JSON with these 5 fields, these types, this key order." Output formatting is that same rigor, applied to a chat model instead of a function signature.</p></div>
+  </div>
+
+  <div class="note danger"><b>Danger case — over-specified format:</b> Aisha defines a JSON schema with 20 required fields for a 3-sentence status update. The source material only supports 6 of them. Rather than leaving fields blank, the model invents plausible-sounding values to fill the schema. Format control only helps when the shape you ask for matches the substance you actually have.</div>
+
+  <div class="defBox"><span class="term">Model Card</span>
+    <p>A short, standardized document describing an ML model — what it's for, what data it trained on, how well it performs, and its limitations. So anyone can understand what a model does and doesn't do before relying on it.</p>
+  </div>
+
+  <div class="sim">
+    <h3>🔲 SIM 5 · Output Format Switcher</h3>
+    <p class="simSub">One information source, four output shapes. Aisha needs to share the same review with four different audiences. Click a tab.</p>
+    <div class="fmtTabs" id="fmtTabs">
+      <button class="fmtTab on" data-f="slack">💬 Slack Update</button>
+      <button class="fmtTab" data-f="table">📊 Sprint Table</button>
+      <button class="fmtTab" data-f="json">🧩 JSON</button>
+      <button class="fmtTab" data-f="card">📄 Model Card</button>
+    </div>
+    <div class="fmtOut" id="fmtOut"></div>
+  </div>
+
+  <div class="note pro"><b>Pro note:</b> Production teams often use JSON schema validators to check the AI's output actually matches the schema they asked for — and auto-retry if it doesn't. That's part of how tools like Notion AI avoid ever returning a broken format to the user.</div>
+  <div class="note biz"><b>In the industry:</b> Every AI feature you use day to day — Notion AI, Grammarly, Linear's AI triage — controls output shape exactly this way. There's no other way to get a chat model to reliably return structured data.</div>
+
+  
+  <div class="divider"></div>
+</div></section>
+
+<!-- ============ SECTION 4 ============ -->
+<section class="blk" id="s4"><div class="wrap">
+  <div class="secHead"><span class="secNum">§ 4</span><h2>Chain-of-Thought Reasoning</h2><span class="secTime">⏱ 13 min</span></div>
+  <p class="secLede">Priya's follow-up isn't a formatting ask — it's a reasoning ask. Some tasks need the AI to actually think through a problem, not just organize text that's already there.</p>
+
+  <div class="analogy"><div class="ic">🦆</div><div><div class="tt">Analogy · Rubber Duck Debugging</div>
+    <p>When you're stuck, explaining the problem step by step to a rubber duck often reveals the answer. Articulating your reasoning catches errors you'd miss by jumping to a conclusion. LLMs work the same way — tell the model to think step by step and the reasoning itself improves.</p></div>
+  </div>
+
+  <div class="analogy two"><div class="ic">➗</div><div><div class="tt">Second Analogy · Long Division on Paper</div>
+    <p>You can't do 847 × 293 reliably in your head — but write out the intermediate steps and the answer gets much more reliable. The LLM is no different: forcing it to externalize intermediate steps measurably improves the odds the final answer is right.</p></div>
+  </div>
+
+  <div class="defBox"><span class="term">Chain-of-Thought (CoT) Prompting</span>
+    <p>Explicitly asking the AI to reason through a problem step by step before its final answer. The model "shows its work" — and that process produces better results.</p>
+  </div>
+
+  <div class="note danger"><b>Danger case — CoT on a task that doesn't need it:</b> Ask "think step by step" before "translate 'churn' to Hindi" and you get a paragraph of unnecessary deliberation before a one-word answer — slower, and sometimes the reasoning talks the model into second-guessing a perfectly correct instinct. Reserve CoT for tasks that actually require multiple reasoning steps.</div>
+
+  <div class="sim">
+    <h3>🔗 SIM 4 · Chain-of-Thought Stepper</h3>
+    <p class="simSub">Task: "Which open risk is most urgent to flag to Priya?" The direct answer is shallow. Press Run reasoning to watch CoT map dependencies step by step — the model's own trace is shown below, not just its conclusion.</p>
+    <div class="cotVs">
+      <div class="cotAns shallow">
+        <h5>😓 Direct Answer (no CoT)</h5>
+        <ul>
+          <li>Unresolved monitoring approach</li>
+          <li>Training blocked on missing feature list</li>
+          <li>Model swap strategy not defined</li>
+        </ul>
+        <p style="font-size:12px;color:var(--ink3);margin-top:8px">Plausible but shallow. Three items, no ranking, no reasoning for why any one is "most urgent." Misses cascade chains and the rollback plan nobody discussed.</p>
+      </div>
+      <div class="cotAns deep" id="cotDeep">
+        <h5>🧠 Chain-of-Thought Answer</h5>
+        <ul>
+          <li><b>Step 1 — Map:</b> Feature list (Apr 20), Prototype (Apr 25), Holdout (TBD), Dashboards (Apr 22), Rollback (undiscussed)</li>
+          <li><b>Step 2 — Dependency chains:</b> Feature list → Training → Prototype → Holdout → Go-live</li>
+          <li><b>Step 3 — Flag ownerless items:</b> Monitoring comparison doc has no owner and no clear deadline</li>
+          <li><b>Step 4 — Trace cascades:</b> Feature list slippage cascades through 4 downstream stages; monitoring gap blocks dashboards → alerting → go-live readiness</li>
+          <li><b>Step 5 — What's missing:</b> Rollback plan was never discussed at all</li>
+          <li><b>Final answer:</b> The feature list is the single highest-blast-radius risk — a slip on Apr 20 delays everything downstream of it. Second: the ownerless monitoring doc, since nobody is accountable for unblocking it.</li>
+        </ul>
+        <p style="font-size:12px;color:var(--green);margin-top:8px">The steps are visible in the output — CoT didn't just relabel the same list, it produced a ranked, reasoned answer no direct prompt gave us.</p>
+      </div>
+    </div>
+    <div class="stepList" id="cotSteps">
+      <div class="step"><span class="sn">1</span><p><b>Map</b> every task and its deadline onto a timeline</p></div>
+      <div class="step"><span class="sn">2</span><p><b>Identify</b> which tasks depend on other tasks completing first — draw the dependency chains</p></div>
+      <div class="step"><span class="sn">3</span><p><b>Flag</b> any task with no owner, no deadline, or an unresolved decision blocking it</p></div>
+      <div class="step"><span class="sn">4</span><p><b>Trace</b> which delays cascade and affect the most downstream work</p></div>
+      <div class="step"><span class="sn">5</span><p><b>Consider</b> what was NOT discussed but should have been</p></div>
+    </div>
+    <button class="btn sm" id="cotRun" style="margin-top:16px">▶ Run reasoning</button>
+    <button class="btn sm ghost" id="cotReset" style="margin-top:16px">↻ Reset</button>
+  </div>
+
+  <div class="note pro"><b>Rule of thumb:</b> If a good answer requires more than one mental step, add chain-of-thought. If you'd whiteboard it before answering, tell the AI to whiteboard it too.</div>
+  <div class="note beg"><b>Beginner note:</b> The simplest way to trigger CoT is the literal phrase "think step by step" before your question. Try it once on any multi-step question — you'll see the difference immediately.</div>
+  <div class="note biz"><b>In the industry:</b> Anthropic's Claude was one of the first models to bake this in natively — they call it "extended thinking." The technique you just used by hand is the same one, just automated.</div>
+
+  <div class="quiz">
+    <p class="q">Quiz 3 · Aisha wants the AI to trace dependency chains and identify cascade risks rather than just listing obvious problems. Which technique should she add?</p>
+    <div class="opt" data-r="w"><span class="ab">A</span>Few-shot prompting — provide examples of risk assessments</div>
+    <div class="opt" data-r="c"><span class="ab">B</span>Chain-of-thought — ask the model to map dependencies step by step before identifying the riskiest one</div>
+    <div class="opt" data-r="w"><span class="ab">C</span>Output formatting — define the exact table columns for the risk report</div>
+    <div class="opt" data-r="w"><span class="ab">D</span>Zero-shot — just ask "what's the riskiest dependency?" clearly</div>
+    <div class="quizWhy"><b>Why B?</b> When the task requires reasoning — not just organizing or formatting — chain-of-thought is your tool. Few-shot controls format, CoT controls thinking depth. Aisha needs the AI to actually trace the dependency chains before picking the riskiest one.</div>
+  </div>
+  <div class="divider"></div>
+</div></section>
+
+<!-- ============ SECTION 5 ============ -->
+<section class="blk" id="s5"><div class="wrap">
+  <div class="secHead"><span class="secNum">§ 5</span><h2>Refining a Prompt in Five Rounds</h2><span class="secTime">⏱ 17 min</span></div>
+  <p class="secLede">Almost nobody writes a great prompt on the first try. Prompt refinement IS debugging: write, read the output, identify the failure, fix one thing, run again.</p>
+
+  <div class="analogy"><div class="ic">🐞</div><div><div class="tt">Analogy · Debugging, Not Dictation</div>
+    <p>Nobody ships their first draft of a model. Don't ship your first draft of a prompt. Aisha needs to email Priya a summary of her action items, flag concerns, and propose a plan. Watch it evolve.</p></div>
+  </div>
+
+  <div class="analogy two"><div class="ic">📷</div><div><div class="tt">Second Analogy · A Photographer's First Shot</div>
+    <p>No photographer ships the first frame. They adjust framing, then lighting, then focus — same subject, dramatically different result by the fifth shot. A prompt improves the same way: one deliberate adjustment per round, not a random reshoot each time.</p></div>
+  </div>
+
+  <div class="note biz"><b>In the industry:</b> GitHub's Copilot team has said publicly that their best internal prompts are on version 40-plus. Prompts are code — version them, iterate on them, don't expect version 1 to ship.</div>
+
+  <div class="sim">
+    <h3>🎚️ SIM 6 · Five-Round Refinement Slider</h3>
+    <p class="simSub">Drag the slider from Round 1 to Round 5. Watch the prompt grow, the RCTFC element added each round, and the output quality bar climb.</p>
+    <input type="range" id="roundSlider" min="1" max="5" value="1" step="1">
+    <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--ink3);margin:6px 0 4px">
+      <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+    </div>
+    <div class="roundHead">
+      <span class="roundBadge" id="roundBadge">1</span>
+      <span class="roundLabel" id="roundLabel"></span>
+      <span class="roundEl" id="roundEl"></span>
+    </div>
+    <div class="qbar"><div class="qbarFill" id="qbarFill"></div></div>
+    <div class="qLabel" id="roundQual"></div>
+    <div class="roundGrid">
+      <div class="roundBox" id="roundPrompt"><span class="lbl">THE PROMPT</span></div>
+      <div class="roundBox roundOut" id="roundOut"><span class="lbl">RESULTING OUTPUT</span></div>
+    </div>
+    <div class="changeNote" id="roundChange"></div>
+  </div>
+
+  <table class="tbl"><thead><tr><th>Round</th><th>What Changed</th><th>RCTFC Element</th><th>Output Quality</th></tr></thead><tbody>
+    <tr><td>1</td><td>Bare question, no material</td><td>None</td><td>AI invented everything</td></tr>
+    <tr><td>2</td><td>Added source notes and recipient</td><td>Context</td><td>Factual but unstructured</td></tr>
+    <tr><td>3</td><td>Added persona and sections</td><td>Role + Format</td><td>Structured but generic</td></tr>
+    <tr><td>4</td><td>Added length, tone, specificity rules</td><td>Constraints</td><td>Tight and professional</td></tr>
+    <tr><td>5</td><td>Added chain-of-thought for analysis</td><td>Reasoning layer</td><td>Dependency-aware risk analysis</td></tr>
+  </tbody></table>
+
+  
+
+  <div class="quiz">
+    <p class="q">Quiz 4 · Aisha gets output that is factually correct and well-structured, but the tone is too formal for an internal Slack message — it reads like a legal document. What is the most effective next step?</p>
+    <div class="opt" data-r="w"><span class="ab">A</span>Rewrite the entire prompt from scratch with a different approach</div>
+    <div class="opt" data-r="c"><span class="ab">B</span>Add a constraint specifying the desired tone (e.g., "casual, peer-to-peer, like a Slack message")</div>
+    <div class="opt" data-r="w"><span class="ab">C</span>Switch to a different AI model that naturally writes more casually</div>
+    <div class="opt" data-r="w"><span class="ab">D</span>Manually edit the output to fix the tone</div>
+    <div class="quizWhy"><b>Why B?</b> The output was close — correct facts, good structure — so the fix is surgical, not a rewrite. Diagnose what's wrong (tone too formal), fix that one thing (add a tone constraint), run again. Exactly like debugging a model: you don't retrain from scratch because one hyperparameter is off.</div>
+  </div>
+  <div class="divider"></div>
+</div></section>
+
+<!-- ============ SECTION 6 ============ -->
+<section class="blk" id="s6"><div class="wrap">
+  <div class="secHead"><span class="secNum">§ 6</span><h2>Two Prompt Challenges</h2><span class="secTime">⏱ 10 min</span></div>
+  <p class="secLede">You've now seen every core technique — RCTFC, few-shot, output formatting, chain-of-thought, iterative refinement. Time to combine them under pressure.</p>
+
+  <div class="card" style="border-color:#3dd6c366;background:linear-gradient(180deg,#eafaf6,var(--card))">
+    <h4 style="color:var(--teal);font-size:15px">How to use this section</h4>
+    <p style="font-size:14px;margin-top:6px">Read Challenge 1 below, write your own prompt against it, then run it through a real model and self-check your output against the pass criteria. Challenge 2 is the stretch — same process, across four audiences.</p>
+  </div>
+
+  <div class="chalCard" id="chal1">
+    <div class="chalHead"><span class="cn">C1</span><h4>The Incident Commander</h4><span class="chev">▶</span></div>
+    <div class="chalBody">
+      <div class="cLabel">The Setup — a live incident, as it unfolded in Slack</div>
+      <div class="slackThread">
+<span class="ts">[10:14]</span> <span class="u">neha-mlops:</span> The churn model's live predictions are failing. Error rate up from 0.1% to 34% in 5 minutes.<br>
+<span class="ts">[10:16]</span> <span class="u">priya-lead:</span> Looks like the system that fetches customer features is timing out — it's out of capacity.<br>
+<span class="ts">[10:18]</span> <span class="u">aisha-ml:</span> Confirmed — the feature store can only handle 50 requests at once, and we're getting 200+.<br>
+<span class="ts">[10:19]</span> <span class="u">neha-mlops:</span> Raising the capacity limit to 200. ETA 3 min.<br>
+<span class="ts">[10:22]</span> <span class="u">priya-lead:</span> Error rate dropping. Down to 8%.<br>
+<span class="ts">[10:25]</span> <span class="u">neha-mlops:</span> Capacity increase complete. Error rate 0.3%. Stable.<br>
+<span class="ts">[10:28]</span> <span class="u">aisha-ml:</span> ~340 failed predictions in the 11-minute window.<br>
+<span class="ts">[10:30]</span> <span class="u">priya-lead:</span> Incident resolved. Aisha, write the post-mortem.
+      </div>
+      <div class="cLabel">Your Mission</div>
+      <p class="mission">Write a prompt that transforms this Slack thread into a blameless post-mortem — a document explaining what happened, why, and what prevents it from happening again (learning, not blaming).</p>
+      <div class="cLabel">You Pass If (tap to tick)</div>
+      <ul class="passList" data-key="c1">
+        <li><span class="box">✓</span> Has Summary, Timeline, Root Cause (asking "why" repeatedly), Impact, Resolution, Action Items</li>
+        <li><span class="box">✓</span> Timeline uses the exact timestamps</li>
+        <li><span class="box">✓</span> Action items are about PREVENTION, not just resolution</li>
+        <li><span class="box">✓</span> Blameless tone throughout</li>
+      </ul>
+      <div class="passScore" data-score="c1">0 / 4 criteria met</div>
+      <div class="cLabel">Techniques to Use</div>
+      <div class="chalTags"><span>RCTFC</span><span>Format control</span><span>Chain-of-thought: dig into the root cause</span></div>
+    </div>
+  </div>
+
+  <div class="chalCard" id="chal2">
+    <div class="chalHead"><span class="cn">C2</span><h4>One Meeting, Four Audiences <span style="font-size:12px;color:var(--gold);font-family:var(--mono)">STRETCH · TONIGHT'S HOMEWORK</span></h4><span class="chev">▶</span></div>
+    <div class="chalBody">
+      <div class="cLabel">The Setup</div>
+      <p class="mission">Aisha's original design review notes (from the top of this page).</p>
+      <div class="cLabel">Your Mission — write FOUR separate prompts</div>
+      <table class="tbl"><thead><tr><th>Output</th><th>Audience</th><th>Key Requirement</th></tr></thead><tbody>
+        <tr><td>A. Executive summary</td><td>VP of Data Science</td><td>Under 100 words, no jargon, focus on dates and risks</td></tr>
+        <tr><td>B. Sprint tickets</td><td>Project tracker</td><td>Each action item as a ticket with criteria for "done"</td></tr>
+        <tr><td>C. Dependency map</td><td>Data science team</td><td>Which tasks block which, as a simple list or table</td></tr>
+        <tr><td>D. Handoff brief</td><td>Data engineer Karan</td><td>Exactly what he needs to prepare: what to name things, what to track, and how often to update it</td></tr>
+      </tbody></table>
+      <div class="cLabel">You Pass If (tap to tick)</div>
+      <ul class="passList" data-key="c2">
+        <li><span class="box">✓</span> Four genuinely different structures — not the same output reworded</li>
+        <li><span class="box">✓</span> Executive summary is under 100 words with no jargon</li>
+        <li><span class="box">✓</span> Sprint tickets include criteria for "done"</li>
+        <li><span class="box">✓</span> Dependency map shows which task blocks which</li>
+      </ul>
+      <div class="passScore" data-score="c2">0 / 4 criteria met</div>
+      <div class="cLabel">Techniques to Use</div>
+      <div class="chalTags"><span>RCTFC × 4</span><span>Format control per output</span></div>
+    </div>
+  </div>
+
+  <div class="quiz">
+    <p class="q">Quiz 5 · You need to turn a raw Slack incident thread into a formal post-mortem that follows your company's template AND traces the root cause deeply. Which combination gives the best result?</p>
+    <div class="opt" data-r="w"><span class="ab">A</span>RCTFC only — a well-structured prompt is sufficient</div>
+    <div class="opt" data-r="w"><span class="ab">B</span>RCTFC + Few-shot — provide your company's template as examples</div>
+    <div class="opt" data-r="c"><span class="ab">C</span>RCTFC + Few-shot + Chain-of-thought — template examples AND step-by-step root-cause reasoning</div>
+    <div class="opt" data-r="w"><span class="ab">D</span>Chain-of-thought only — just tell the model to think step by step</div>
+    <div class="quizWhy"><b>Why C?</b> This task has three requirements: structure (RCTFC), specific format (few-shot with your template), and deep reasoning (chain-of-thought for the 5-Whys). Each technique handles a different dimension of quality. The best prompt engineers combine techniques like a chef combines ingredients — each one adds something the others don't.</div>
+  </div>
+
+  
+  
+  <div class="divider"></div>
+</div></section>
+
+<!-- ============ SECTION 7 ============ -->
+<section class="blk" id="s7"><div class="wrap">
+  <div class="secHead"><span class="secNum">§ 7</span><h2>Wrap-Up — The Prompt Engineer's Checklist</h2><span class="secTime">⏱ 5 min</span></div>
+  <p class="secLede">Five takeaways to reference every time you write a prompt.</p>
+
+  <div class="grid2">
+    <div class="card" style="margin:0"><h4 style="color:var(--orange)">1 · RCTFC anatomy</h4><p style="font-size:14px">Role, Context, Task, Format, Constraints. Same principle as a well-written project brief: specificity in, quality out.</p></div>
+    <div class="card" style="margin:0"><h4 style="color:var(--teal)">2 · Zero-shot vs few-shot</h4><p style="font-size:14px">When output must match a template, show 2-3 examples. The examples ARE the instruction.</p></div>
+    <div class="card" style="margin:0"><h4 style="color:var(--violet)">3 · Chain-of-thought</h4><p style="font-size:14px">For analysis or multi-step reasoning, tell the AI to think step by step. Rubber duck debugging applied to AI.</p></div>
+    <div class="card" style="margin:0"><h4 style="color:var(--gold)">4 · Output formatting</h4><p style="font-size:14px">Define output like a prediction schema: exact fields, headers, keys. If you can sketch it in 10 seconds, the sketch belongs in the prompt.</p></div>
+  </div>
+  <div class="card" style="border-color:#ff8a2a66;background:linear-gradient(180deg,#fdf1e0,var(--card))"><h4 style="color:var(--orange2)">5 · Iterative refinement</h4><p style="font-size:14.5px">Prompting is debugging, not dictation. Write, read, diagnose, fix one thing, repeat. Nobody ships their first version of a model. Don't ship your first draft of a prompt.</p></div>
+
+  <div class="sim">
+    <h3>🎯 SIM 7 · Technique Matcher</h3>
+    <p class="simSub">A quick game to lock in the full toolkit. Read the scenario, pick the technique you'd reach for first. Instant feedback.</p>
+    <div class="matchScore" id="matchScore">Score 0 / 5</div>
+    <div class="matchScenario" id="matchScenario"><span>SCENARIO</span></div>
+    <div class="matchBtns" id="matchBtns"></div>
+    <div class="matchWhy" id="matchWhy"></div>
+  </div>
+
+  <h4 style="font-family:var(--sans);font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin:40px 0 6px">Techniques Reference</h4>
+  <table class="tbl"><thead><tr><th>Technique</th><th>What It Is</th><th>When to Use</th><th>Real-World Parallel</th></tr></thead><tbody>
+    <tr><td>RCTFC</td><td>Role + Context + Task + Format + Constraints</td><td>Every non-trivial prompt</td><td>Writing a detailed project brief</td></tr>
+    <tr><td>Zero-shot</td><td>Instructions only, no examples</td><td>General tasks, any format OK</td><td>"Build a churn model"</td></tr>
+    <tr><td>Few-shot</td><td>Instructions + 2-3 examples</td><td>Must match specific style/template</td><td>"Build it like these three"</td></tr>
+    <tr><td>Chain-of-thought</td><td>"Think step by step"</td><td>Analysis, debugging, comparison</td><td>Rubber duck debugging</td></tr>
+    <tr><td>Format control</td><td>Show exact output shape</td><td>Always for non-trivial output</td><td>Defining a prediction schema</td></tr>
+    <tr><td>Iterative refinement</td><td>Write, read, fix, repeat</td><td>Every important prompt</td><td>Model review cycle</td></tr>
+  </tbody></table>
+
+  <p class="bigQuote">"The model didn't get smarter between two prompts. <em>You</em> did."</p>
+
+  
+</div></section>
+
+<footer class="footer"><div class="wrap">
+  <p>Class 2 · Prompt Engineering Basics — AIML Program</p>
+  <p style="margin-top:6px">Interactive teaching companion · 7 simulators · 5 checkpoint quizzes · 2 hands-on challenges</p>
+</div></footer>
+
+<script>
+/* progress bar + hero counters */
+addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('progressBar').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'});
+document.querySelectorAll('.hstat .n').forEach(el=>{const t=+el.dataset.count;let c=0;const step=()=>{c+=Math.max(1,Math.round(t/30));if(c>=t)c=t;el.textContent=c;if(c<t)requestAnimationFrame(step)};setTimeout(step,300)});
+
+/* flip cards */
+document.querySelectorAll('.flip').forEach(f=>f.addEventListener('click',()=>f.classList.toggle('flipped')));
+
+/* quizzes */
+document.querySelectorAll('.quiz').forEach(q=>{const opts=q.querySelectorAll('.opt');
+ opts.forEach(o=>o.addEventListener('click',()=>{opts.forEach(x=>{x.classList.add('locked');if(x.dataset.r==='c')x.classList.add('correct')});
+  if(o.dataset.r!=='c')o.classList.add('wrong');q.querySelector('.quizWhy').classList.add('show');}));});
+
+/* ===== SIM 1: Prompt A vs B ===== */
+(()=>{
+const PA=`SUMMARISE THIS MEETING.
+
+Model Design Review \u2014 Customer Churn
+Prediction Project
+11 April 2025, 10:00-10:50 AM
+Attendees: Priya, Aisha, Karan, Neha, Vikram
+
+- churn model at 68%, needs 85%+
+- build in 3 stages: feature / training /
+  prediction pipelines
+- prediction-service must mask PII
+- aisha builds XGBoost v1 by 25 apr
+- karan: feature list by 20 apr
+- ... (all raw notes pasted)`;
+const PB=`Role: You are a senior data scientist who
+writes clear, actionable design review
+summaries for data science teams.
+
+Context: I'm a junior ML engineer. We held a
+50-min design review for a customer churn
+prediction system. Posted in team Slack,
+referenced during sprint planning.
+
+Task: Turn the raw notes into a structured
+design review summary.
+
+Format:
+1. Overview (max 2 sentences)
+2. Key Decisions (numbered)
+3. Action Items (table: Action | Owner |
+   Deadline | Blocked By)
+4. Open Questions (bulleted)
+5. Risks Identified (bulleted)
+
+Constraints:
+- Under 500 words.
+- Unknown owner/deadline \u2192 "TBD".
+- Do not invent details.
+- Precise technical language, no jargon.
+
+Notes: [Aisha's design review notes]`;
+const OA=`<span class="lbl">TYPICAL OUTPUT</span>
+<div class="sec">Goal</div>Current churn model is 68%; target 85%+. Plan to rebuild as an ML pipeline.
+<div class="sec">Architecture</div>Split into feature / training / prediction stages. Automated retraining. Data warehouse + feature store, version tracking. PII masked before the model.
+<div class="sec">Open Decisions</div>Monitoring (drift vs accuracy), fairness thresholds, model-switch strategy, rollback plan.
+<div class="sec">Action Items</div>Aisha: XGBoost v1 by 25 Apr. Karan: feature list 20 Apr. Priya: comparison doc 18 Apr. Neha: dashboards + metrics 22 Apr, holdout test.
+<p style="color:var(--rose);margin-top:8px;font-size:12px">Readable, but no dependency tracking, no TBD-vs-decided separation, no ownership accountability.</p>`;
+const OB=`<span class="lbl">STRUCTURED OUTPUT</span>
+<h5>1. Overview</h5>Reviewed design for a new churn prediction system to replace the 68% rule-based approach, targeting 85%+.
+<div class="sec">2. Key Decisions</div>3 pipeline stages \u00B7 automated retraining \u00B7 warehouse + feature store + version tracking \u00B7 PII masking \u00B7 dashboards.
+<div class="sec">3. Action Items</div>
+<table><thead><tr><th>Action</th><th>Owner</th><th>Due</th><th>Blocked By</th></tr></thead><tbody>
+<tr><td>XGBoost v1</td><td>Aisha</td><td>25 Apr</td><td>None</td></tr>
+<tr><td>Feature list</td><td>TBD</td><td>20 Apr</td><td>None</td></tr>
+<tr><td>Drift-vs-acc doc</td><td>TBD</td><td>18 Apr</td><td>None</td></tr>
+<tr><td>Dashboards</td><td>Neha</td><td>TBD</td><td>Metrics list</td></tr>
+<tr><td>Holdout test</td><td>Neha</td><td>TBD</td><td>Aisha's prototype</td></tr>
+</tbody></table>
+<div class="sec">4. Open Questions</div>Drift vs accuracy (no owner) \u00B7 fairness metrics \u00B7 mid-campaign model switch \u00B7 rollback.
+<div class="sec">5. Risks</div>Comparison doc has no owner \u2192 blocks monitoring. Feature list may conflict with prototype timeline. Rollback plan entirely missing.`;
+const p=document.getElementById('abPrompt'),o=document.getElementById('abOut'),g=document.getElementById('abGap');
+const set=ab=>{
+  document.querySelectorAll('#abToggle button').forEach(b=>b.classList.toggle('on',b.dataset.ab===ab));
+  if(ab==='a'){p.innerHTML='<span class="lbl">PROMPT A \u00B7 NO STRUCTURE</span>'+PA;o.innerHTML=OA;g.innerHTML='<b>Prompt A gap:</b> the model restates the notes. Aisha\'s lead would still have to do the thinking \u2014 which task blocks which, what\'s decided vs TBD, who owns what.';}
+  else{p.innerHTML='<span class="lbl">PROMPT B \u00B7 RCTFC STRUCTURED</span>'+PB;o.innerHTML=OB;g.innerHTML='<b>What Prompt B added:</b> Role + Context + Format + Constraints. Decisions separated from action items, a table tracking owners and blockers, distinct lists for open questions and risks. Paste-ready for Slack.';}
+};
+document.querySelectorAll('#abToggle button').forEach(b=>b.onclick=()=>set(b.dataset.ab));
+set('a');
+})();
+
+/* ===== SIM 2: RCTFC Builder ===== */
+(()=>{
+const parts={
+ R:{label:'Role',text:'Role: You are a senior data scientist who writes clear, actionable design review summaries.'},
+ C1:{label:'Context',text:'Context: I\'m a junior ML engineer. Design review for a churn prediction system, posted in Slack for sprint planning.'},
+ T:{label:'Task',text:'Task: Turn the raw meeting notes below into a structured design review summary.'},
+ F:{label:'Format',text:'Format: 1) Overview 2) Key Decisions 3) Action Items table 4) Open Questions 5) Risks.'},
+ C2:{label:'Constraints',text:'Constraints: under 500 words, "TBD" for unknowns, do not invent details.'}
+};
+const order=['R','C1','T','F','C2'];
+const labels=['nothing yet','Vague','Usable','Solid','Sharp','Production-ready'];
+const added=new Set();
+const prev=document.getElementById('buildPreview'),fill=document.getElementById('qmeterFill'),lab=document.getElementById('qLabel');
+const render=()=>{
+  const n=added.size;
+  fill.style.width=(n/5*100)+'%';
+  lab.textContent='Quality: '+n+'/5 \u2014 '+labels[n];
+  if(n===0){prev.innerHTML='<span class="empty">Click an element above to start building the prompt...</span>';return;}
+  prev.innerHTML=order.filter(k=>added.has(k)).map(k=>'<span class="pl">['+parts[k].label+']</span> '+parts[k].text).join('<br><br>');
+};
+document.querySelectorAll('#rctfcChips .rctfcChip').forEach(c=>c.onclick=()=>{
+  const k=c.dataset.k;
+  if(added.has(k)){added.delete(k);c.classList.remove('on');}else{added.add(k);c.classList.add('on');}
+  render();
+});
+document.getElementById('rctfcReset').onclick=()=>{added.clear();document.querySelectorAll('#rctfcChips .rctfcChip').forEach(c=>c.classList.remove('on'));render();};
+render();
+})();
+
+/* ===== SIM 3: Zero vs Few shot ===== */
+(()=>{
+const zeroDesc=`"Extract the action items from the design review notes below and format them as a structured list."<br><br><span style="color:var(--rose)">The AI knows WHAT to do but not what the output should look like. It returns a reasonable list \u2014 in its own default format.</span>`;
+const fewDesc=`Same task, but 3 examples of the team's exact 7-field format are pasted first (TASK / OWNER / DEADLINE / PRIORITY / STATUS / BLOCKED BY / DECISION REF).<br><br><span style="color:var(--green)">The examples ARE the instruction. The model can now SEE the shape to replicate.</span>`;
+const zeroFields=['TASK: Build first model version using XGBoost','OWNER: Aisha','DEADLINE: 25 Apr','NOTES: Priya to review prototype'];
+const fewFields=[
+ {t:'TASK: Build first model version using XGBoost',n:0},
+ {t:'OWNER: Aisha (ML Engineer)',n:0},
+ {t:'DEADLINE: 25 Apr 2025',n:0},
+ {t:'PRIORITY: P1 - Critical',n:1},
+ {t:'STATUS: Not Started',n:1},
+ {t:'BLOCKED BY: None',n:1},
+ {t:'DECISION REF: Pipeline split agreed in review (11 Apr 2025)',n:1}
+];
+const pd=document.getElementById('fsPromptDesc'),ff=document.getElementById('fsFields'),g=document.getElementById('fsGap');
+const set=fs=>{
+  document.querySelectorAll('#fsToggle button').forEach(b=>b.classList.toggle('on',b.dataset.fs===fs));
+  if(fs==='zero'){
+    pd.innerHTML=zeroDesc;
+    ff.innerHTML=zeroFields.map(f=>'<div class="fsField">'+f+'</div>').join('');
+    g.innerHTML='<b>Zero-shot result:</b> correct information, but not in Aisha\'s team format. No priority, no dependency tracking, no status, no decision reference. Like a teammate who writes clearly but ignores your template.';
+  }else{
+    pd.innerHTML=fewDesc;
+    ff.innerHTML=fewFields.map(f=>'<div class="fsField'+(f.n?' newf':'')+'">'+f.t+'</div>').join('');
+    g.innerHTML='<b>Few-shot result:</b> the model now produces the exact 7-field structure. It assigns priorities from context, fills BLOCKED BY relationships, and writes TBD for unassigned owners. The <span style="color:var(--green)">green fields</span> are what examples unlocked.';
+  }
+};
+document.querySelectorAll('#fsToggle button').forEach(b=>b.onclick=()=>set(b.dataset.fs));
+set('zero');
+})();
+
+/* ===== SIM 4: Chain-of-Thought stepper ===== */
+(()=>{
+const steps=[...document.querySelectorAll('#cotSteps .step')];
+const deep=document.getElementById('cotDeep');
+let timers=[];
+const clear=()=>{timers.forEach(t=>clearTimeout(t));timers=[];};
+document.getElementById('cotRun').onclick=()=>{
+  clear();steps.forEach(s=>s.classList.remove('on'));deep.classList.remove('reveal');
+  steps.forEach((s,i)=>timers.push(setTimeout(()=>s.classList.add('on'),300+i*700)));
+  timers.push(setTimeout(()=>deep.classList.add('reveal'),300+steps.length*700+300));
+};
+document.getElementById('cotReset').onclick=()=>{clear();steps.forEach(s=>s.classList.remove('on'));deep.classList.remove('reveal');};
+})();
+
+/* ===== SIM 5: Output format switcher ===== */
+(()=>{
+const outs={
+ slack:`<div class="cap">Format A \u00B7 Slack update \u2014 one sentence per decision</div><ol>
+<li>The team agreed to rebuild the churn system as 3 stages (feature / training / prediction) to raise accuracy from 68% to 85%+.</li>
+<li>The team agreed the prediction-service must mask customer PII before any data reaches the model.</li>
+<li>The team agreed to store raw events in the warehouse and features in a feature store, with version tracking from the start.</li>
+<li>The team agreed to build an automated retraining pipeline feeding scheduled retrains.</li>
+<li>The team agreed Aisha builds the XGBoost v1 by 25 Apr and Karan provides the feature list by 20 Apr.</li>
+</ol>`,
+ table:`<div class="cap">Format B \u00B7 Sprint planning table</div>
+<table><thead><tr><th>Task</th><th>Owner</th><th>Deadline</th><th>Priority</th><th>Blocked By</th></tr></thead><tbody>
+<tr><td>Build XGBoost v1</td><td>Aisha</td><td>25 Apr</td><td>P1</td><td>None</td></tr>
+<tr><td>Provide feature list</td><td>TBD</td><td>20 Apr</td><td>P1</td><td>None</td></tr>
+<tr><td>Drift vs accuracy doc</td><td>TBD</td><td>18 Apr</td><td>P1</td><td>None</td></tr>
+<tr><td>Model-swap strategy</td><td>TBD</td><td>TBD</td><td>P0</td><td>None</td></tr>
+<tr><td>PII masking</td><td>Neha</td><td>TBD</td><td>P0</td><td>None</td></tr>
+<tr><td>Monitoring dashboards</td><td>Neha</td><td>TBD</td><td>P1</td><td>Metrics list</td></tr>
+<tr><td>Holdout test</td><td>Neha</td><td>TBD</td><td>P1</td><td>Aisha's prototype</td></tr>
+</tbody></table>`,
+ json:`<div class="cap">Format C \u00B7 Machine-readable JSON</div><span class="jp2">[</span>
+  <span class="jp2">{</span>
+    <span class="jk2">"task"</span><span class="jp2">:</span> <span class="jv">"Build first XGBoost model version"</span><span class="jp2">,</span>
+    <span class="jk2">"owner"</span><span class="jp2">:</span> <span class="jv">"Aisha (ML Engineer)"</span><span class="jp2">,</span>
+    <span class="jk2">"deadline"</span><span class="jp2">:</span> <span class="jv">"2025-04-25"</span><span class="jp2">,</span>
+    <span class="jk2">"priority"</span><span class="jp2">:</span> <span class="jv">"P1"</span><span class="jp2">,</span>
+    <span class="jk2">"status"</span><span class="jp2">:</span> <span class="jv">"not_started"</span><span class="jp2">,</span>
+    <span class="jk2">"blocked_by"</span><span class="jp2">:</span> <span class="jn">null</span><span class="jp2">,</span>
+    <span class="jk2">"component"</span><span class="jp2">:</span> <span class="jv">"training-pipeline"</span>
+  <span class="jp2">},</span>
+  <span class="jp2">{</span>
+    <span class="jk2">"task"</span><span class="jp2">:</span> <span class="jv">"Provide final feature list"</span><span class="jp2">,</span>
+    <span class="jk2">"owner"</span><span class="jp2">:</span> <span class="jv">"TBD"</span><span class="jp2">,</span>
+    <span class="jk2">"deadline"</span><span class="jp2">:</span> <span class="jv">"2025-04-20"</span><span class="jp2">,</span>
+    <span class="jk2">"blocked_by"</span><span class="jp2">:</span> <span class="jn">null</span><span class="jp2">,</span>
+    <span class="jk2">"component"</span><span class="jp2">:</span> <span class="jv">"feature-pipeline"</span>
+  <span class="jp2">}</span>
+<span class="jp2">]</span>`,
+ card:`<div class="cap">Format D \u00B7 Model Card</div>
+<h5>Model Card: Customer Churn Prediction Model</h5>
+<div class="sec" style="color:var(--orange2);font-weight:700;margin-top:8px">Status</div>In Development
+<div class="sec" style="color:var(--orange2);font-weight:700;margin-top:8px">Intended Use</div>Predicts which customers are likely to stop purchasing so marketing can target retention before they churn. Output is a churn risk score consumed by the campaign system.
+<div class="sec" style="color:var(--orange2);font-weight:700;margin-top:8px">Training Data &amp; Features</div>Trains on behavior signals in a feature store, sourced from warehouse events. PII masked before features reach the model.
+<div class="sec" style="color:var(--orange2);font-weight:700;margin-top:8px">Performance Target</div>Baseline 68% \u2192 target 85%+, validated on a holdout set before go-live.
+<div class="sec" style="color:var(--orange2);font-weight:700;margin-top:8px">Known Limitations &amp; Open Risks</div>Monitoring approach undecided \u00B7 fairness thresholds undefined \u00B7 no model-switch strategy \u00B7 rollback plan missing \u00B7 holdout test unscheduled.`
+};
+const out=document.getElementById('fmtOut');
+const set=f=>{
+  document.querySelectorAll('#fmtTabs .fmtTab').forEach(b=>b.classList.toggle('on',b.dataset.f===f));
+  out.className='fmtOut'+(f==='json'?' json':'');
+  out.innerHTML=outs[f];
+};
+document.querySelectorAll('#fmtTabs .fmtTab').forEach(b=>b.onclick=()=>set(b.dataset.f));
+set('slack');
+})();
+
+/* ===== SIM 6: Five-round refinement ===== */
+(()=>{
+const rounds=[
+ {label:'Vague',el:'\u2014 no element',qual:8,qtxt:'AI invents everything',
+  prompt:'Write an email about the design review action items.',
+  out:'A generic, hypothetical email about "action items" \u2014 no real names, no real tasks, useless.',
+  change:'<b>Round 1:</b> Bare question. No audience, no context, no source material. The model has nothing to ground its answer in, so it makes things up.'},
+ {label:'Context added',el:'Context',qual:38,qtxt:'Factual but unstructured',
+  prompt:'I attended a design review for our churn prediction model. Write an email to my team lead summarising the action items.\n\nNotes: [Aisha\'s notes]',
+  out:'Now grounded in the real notes and addressed to Priya \u2014 but likely a wall of text with no clear sections.',
+  change:'<b>Round 2:</b> Added source notes + recipient. The email is factual now, but still a shapeless paragraph.'},
+ {label:'Structured',el:'Role + Format',qual:62,qtxt:'Structured but generic',
+  prompt:'Role: junior ML engineer writing a follow-up to your DS lead.\nContext: design review for the churn pipeline.\nTask: draft an email with:\n1. Subject 2. One-line summary\n3. My action items 4. Concerns 5. Questions\n\nNotes: [Aisha\'s notes]',
+  out:'Clean sections appear: subject, summary, owned items, concerns, questions. But it may be too long and the tone can drift.',
+  change:'<b>Round 3:</b> Added a persona and explicit sections. Structure is there \u2014 now we tighten length and tone.'},
+ {label:'Sharp',el:'Constraints',qual:82,qtxt:'Tight and professional',
+  prompt:'Role: junior ML engineer \u2192 DS lead.\nContext: churn pipeline review. Priya reads on her phone between meetings.\nTask: email with subject, one-line summary, committed-items table, max-3 concerns (each with impact + fix), max-4 open questions.\nConstraints: under 300 words, direct peer-to-peer tone, name each concern\'s downstream impact, sign off as Aisha.\n\nNotes: [Aisha\'s notes]',
+  out:'Tight, professional, scannable. A table for committed items, three sharp concerns each with a suggested fix. Genuinely sendable.',
+  change:'<b>Round 4:</b> Added length, tone, and specificity rules (Constraints). The email is now something Priya can act on in 30 seconds.'},
+ {label:'Production-ready',el:'Reasoning layer',qual:100,qtxt:'Dependency-aware risk analysis',
+  prompt:'... (all of Round 4) ...\n\nBefore writing Concerns, internally map every task\'s dependencies to find which delays cascade the most. Select the three with the highest blast radius.\n\nConstraints: under 350 words, do not invent facts, TBD for unknowns, sign off as Aisha.',
+  out:'Same tight email \u2014 but now the three concerns are the highest-blast-radius ones, each naming the exact dependency chain it threatens. Production-quality.',
+  change:'<b>Round 5:</b> Added chain-of-thought for the analysis section. The model reasons about dependencies before writing, so the concerns are prioritised by real cascade impact.'}
+];
+const slider=document.getElementById('roundSlider');
+const badge=document.getElementById('roundBadge'),label=document.getElementById('roundLabel'),el=document.getElementById('roundEl');
+const fill=document.getElementById('qbarFill'),qual=document.getElementById('roundQual');
+const pr=document.getElementById('roundPrompt'),out=document.getElementById('roundOut'),chg=document.getElementById('roundChange');
+const render=()=>{
+  const i=+slider.value-1,r=rounds[i];
+  badge.textContent=i+1;label.textContent=r.label;el.textContent='+ '+r.el;
+  fill.style.width=r.qual+'%';qual.textContent='Output quality: '+r.qual+'% \u2014 '+r.qtxt;
+  pr.innerHTML='<span class="lbl">THE PROMPT</span>'+r.prompt.replace(/\n/g,'<br>');
+  out.innerHTML='<span class="lbl">RESULTING OUTPUT</span>'+r.out;
+  chg.innerHTML=r.change;
+};
+slider.oninput=render;render();
+})();
+
+/* ===== challenge cards ===== */
+document.querySelectorAll('.chalCard').forEach(card=>{
+  card.querySelector('.chalHead').onclick=()=>card.classList.toggle('open');
+});
+document.querySelectorAll('.passList').forEach(list=>{
+  const key=list.dataset.key;
+  const scoreEl=document.querySelector('.passScore[data-score="'+key+'"]');
+  const items=[...list.querySelectorAll('li')];
+  const upd=()=>{const n=items.filter(i=>i.classList.contains('checked')).length;scoreEl.textContent=n+' / '+items.length+' criteria met'+(n===items.length?' \u2014 challenge passed! \uD83C\uDF89':'');};
+  items.forEach(li=>li.onclick=(e)=>{e.stopPropagation();li.classList.toggle('checked');upd();});
+});
+
+/* ===== SIM 7: Technique Matcher ===== */
+(()=>{
+const Q=[
+ {s:'You need output that matches your team\'s exact model-card template, section for section.',opts:['Few-shot','Chain-of-thought','Zero-shot'],a:0,why:'Show 2-3 real examples \u2014 the examples ARE the instruction.'},
+ {s:'You want the AI to trace which delayed task cascades into the most downstream work.',opts:['Format control','Chain-of-thought','Few-shot'],a:1,why:'Reasoning task \u2192 ask it to think step by step before answering.'},
+ {s:'The answer is correct and well-structured, but the tone is too formal for Slack.',opts:['Rewrite from scratch','Add a tone constraint','Switch models'],a:1,why:'The output was close \u2014 fix one thing surgically, then re-run.'},
+ {s:'You\'re starting a brand-new, simple summary task with no template requirement.',opts:['Zero-shot','Few-shot','Chain-of-thought'],a:0,why:'Instructions alone are enough when any reasonable format is fine.'},
+ {s:'You need the same info as a Slack post, a JSON payload, and a sprint table.',opts:['Chain-of-thought','Output format control','Zero-shot'],a:1,why:'Define the exact shape per audience \u2014 same info, four schemas.'}
+];
+let i=0,score=0;
+const sc=document.getElementById('matchScore'),scen=document.getElementById('matchScenario'),btns=document.getElementById('matchBtns'),why=document.getElementById('matchWhy');
+const render=()=>{
+  if(i>=Q.length){scen.innerHTML='<span>DONE</span>You matched '+score+'/'+Q.length+' scenarios. That\'s the whole toolkit \u2014 pick the technique that fits the failure you see.';btns.innerHTML='';why.innerHTML='';return;}
+  const q=Q[i];
+  scen.innerHTML='<span>SCENARIO '+(i+1)+' / '+Q.length+'</span>'+q.s;
+  btns.innerHTML='';why.innerHTML='';
+  q.opts.forEach((o,idx)=>{
+    const b=document.createElement('button');b.className='matchBtn';b.textContent=o;
+    b.onclick=()=>{
+      if(btns.dataset.done)return;btns.dataset.done='1';
+      const right=idx===q.a;
+      if(right){b.classList.add('right');score++;}else{b.classList.add('wrong');btns.children[q.a].classList.add('right');}
+      sc.textContent='Score '+score+' / '+Q.length;
+      why.innerHTML='<b>'+(right?'Correct.':'The pick is '+q.opts[q.a]+'.')+'</b> '+q.why+' <span style="color:var(--orange2);cursor:pointer;text-decoration:underline" id="nextM">Next \u2192</span>';
+      document.getElementById('nextM').onclick=()=>{i++;delete btns.dataset.done;render();};
+    };
+    btns.appendChild(b);
+  });
+};
+render();
+})();
+</script>
+</body>
+</html>

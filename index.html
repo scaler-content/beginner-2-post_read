@@ -476,7 +476,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   <div class="note danger"><b>Danger case — contradictory constraints:</b> Aisha writes Task: "include the full raw transcript of every speaker" and Constraints: "under 500 words." The model can't do both — it either blows past the word limit or silently drops the transcript, and you won't know which without checking. RCTFC only helps when its five elements agree with each other.</div>
   <div class="note beg"><b>Beginner note:</b> You don't need all five elements every time. For "What does overfitting mean?", just the Task is enough. For anything needing more than a one-line answer, RCTFC is your go-to.</div>
   <div class="note pro"><b>Pro note:</b> The five elements don't have to appear in R-C-T-F-C order. Some of the best prompts open with the Task and close with Constraints. What matters is that all five show up somewhere — not the sequence.</div>
-  <div class="note adv"><b>Advanced note:</b> In production, Role + Context + Constraints are often encoded as a persistent <b>system prompt</b> that stays constant across interactions, while Task + Format change per request.</div>
+  <div class="note adv"><b>Coming in Class 3:</b> Today, all five RCTFC elements live inside one prompt you retype every time. In production they get split up — Role + Context + Constraints get frozen once into a persistent <b>system prompt</b> that survives across every request, while only Task + Format change per call. Why that split exists, and what breaks when teams get it wrong, is where Class 3 starts.</div>
   <div class="note biz"><b>In the industry:</b> OpenAI's own developer docs teach prompt structure around this same idea — role, context, and constraints up front. RCTFC just adds an explicit Role slot because it matters even more once a prompt goes into a real product.</div>
 
   
@@ -524,16 +524,16 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   <div class="note biz"><b>In the industry:</b> Zomato's support bot reportedly uses few-shot prompting with 3-5 previous ticket resolutions as examples — that's how a generic model ends up sounding like it always has.</div>
 
   <div class="quiz">
-    <p class="q">Quiz 2 · Your team has a specific Model Card format with sections like "Intended Use," "Training Data," "Performance," and "Limitations" in a very particular style. You want the AI to produce one in exactly this format. Which approach is most effective?</p>
+    <p class="q">Quiz 2 · Your team has a specific incident-postmortem format with sections like "Summary," "Root Cause," "Impact," and "Action Items" in a very particular style. You want the AI to produce one in exactly this format. Which approach is most effective?</p>
     <div class="opt" data-r="w"><span class="ab">A</span>Zero-shot: describe the format in words and trust the model to figure it out</div>
-    <div class="opt" data-r="c"><span class="ab">B</span>Few-shot: paste 2-3 examples of your team's actual model cards, then ask the model to produce one</div>
-    <div class="opt" data-r="w"><span class="ab">C</span>Just ask "Write a model card" and manually reformat afterward</div>
+    <div class="opt" data-r="c"><span class="ab">B</span>Few-shot: paste 2-3 examples of your team's actual postmortems, then ask the model to produce one</div>
+    <div class="opt" data-r="w"><span class="ab">C</span>Just ask "Write a postmortem" and manually reformat afterward</div>
     <div class="opt" data-r="w"><span class="ab">D</span>Use a higher temperature setting for more creative formatting</div>
-    <div class="quizWhy"><b>Why B?</b> When output must match a specific template, showing beats telling. You don't hand a new teammate a 20-page style guide — you show them three great model cards and say "do it like this."</div>
+    <div class="quizWhy"><b>Why B?</b> When output must match a specific template, showing beats telling. You don't hand a new teammate a 20-page style guide — you show them three great postmortems and say "do it like this."</div>
   </div>
 
   <div class="divider" style="margin:44px 0"></div>
-  <p class="secLede" style="margin-top:0">Few-shot solved the template problem for one audience. But Aisha's notes need to reach four different audiences — a Slack update, a sprint tracker, a JSON payload for another tool, and a formal model card. Same information, four shapes. That's <b>output formatting</b>.</p>
+  <p class="secLede" style="margin-top:0">Few-shot solved the template problem for one audience. But Aisha's notes need to reach three different audiences — a Slack update, a sprint tracker, and a JSON payload for another tool. Same information, three shapes. That's <b>output formatting</b>.</p>
 
   <div class="defBox"><span class="term">Output Formatting</span>
     <p>Explicitly defining the structure, shape, and style of the AI's response. Like writing <code class="k">SELECT customer_id, churn_score FROM customers</code> instead of "give me customer data" — you get exactly what you specified.</p>
@@ -545,18 +545,13 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 
   <div class="note danger"><b>Danger case — over-specified format:</b> Aisha defines a JSON schema with 20 required fields for a 3-sentence status update. The source material only supports 6 of them. Rather than leaving fields blank, the model invents plausible-sounding values to fill the schema. Format control only helps when the shape you ask for matches the substance you actually have.</div>
 
-  <div class="defBox"><span class="term">Model Card</span>
-    <p>A short, standardized document describing an ML model — what it's for, what data it trained on, how well it performs, and its limitations. So anyone can understand what a model does and doesn't do before relying on it.</p>
-  </div>
-
   <div class="sim">
     <h3>🔲 SIM 5 · Output Format Switcher</h3>
-    <p class="simSub">One information source, four output shapes. Aisha needs to share the same review with four different audiences. Click a tab.</p>
+    <p class="simSub">One information source, three output shapes. Aisha needs to share the same review with three different audiences. Click a tab.</p>
     <div class="fmtTabs" id="fmtTabs">
       <button class="fmtTab on" data-f="slack">💬 Slack Update</button>
       <button class="fmtTab" data-f="table">📊 Sprint Table</button>
       <button class="fmtTab" data-f="json">🧩 JSON</button>
-      <button class="fmtTab" data-f="card">📄 Model Card</button>
     </div>
     <div class="fmtOut" id="fmtOut"></div>
   </div>
@@ -572,6 +567,27 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 <section class="blk" id="s4"><div class="wrap">
   <div class="secHead"><span class="secNum">§ 4</span><h2>Chain-of-Thought Reasoning</h2><span class="secTime">⏱ 13 min</span></div>
   <p class="secLede">Priya's follow-up isn't a formatting ask — it's a reasoning ask. Some tasks need the AI to actually think through a problem, not just organize text that's already there.</p>
+
+  <p style="font-family:var(--sans);font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin:30px 0 6px">Warm-Up · What Does "Chain of Thought" Even Mean?</p>
+  <p style="font-size:14px;color:var(--ink2)">Forget design reviews for a second. Take the simplest possible problem: <b>23 × 47 = ?</b> Watch the difference between blurting an answer and working it out.</p>
+  <div class="cotVs" style="margin-top:14px">
+    <div class="cotAns shallow">
+      <h5>😬 Straight to the Answer (no CoT)</h5>
+      <ul><li>23 × 47 = 1081</li></ul>
+      <p style="font-size:12px;color:var(--ink3);margin-top:8px">Might be right, might not — there's nothing to check. If a mental slip happened somewhere, it's buried inside one number.</p>
+    </div>
+    <div class="cotAns deep reveal">
+      <h5>🧠 Step by Step (CoT)</h5>
+      <ul>
+        <li><b>Step 1</b> — Split the harder number: 47 = 40 + 7</li>
+        <li><b>Step 2</b> — Solve the easy piece: 23 × 40 = 920</li>
+        <li><b>Step 3</b> — Solve the leftover piece: 23 × 7 = 161</li>
+        <li><b>Step 4</b> — Add the pieces back: 920 + 161 = 1081</li>
+      </ul>
+      <p style="font-size:12px;color:var(--green);margin-top:8px">Same final answer — but every step is checkable. If Step 3 had said 23 × 7 = 151, you'd catch it right there instead of trusting a wrong 1071.</p>
+    </div>
+  </div>
+  <p style="font-size:14px;color:var(--ink2);margin-top:14px">That's the whole idea, no domain knowledge required: <b>chain-of-thought means don't jump straight to the final answer — make the model lay out its intermediate steps first.</b> It works for splitting a two-digit multiplication. It works exactly the same way when the "problem" is which risk to flag to Priya first — just bigger, messier steps instead of arithmetic.</p>
 
   <div class="analogy"><div class="ic">🦆</div><div><div class="tt">Analogy · Rubber Duck Debugging</div>
     <p>When you're stuck, explaining the problem step by step to a rubber duck often reveals the answer. Articulating your reasoning catches errors you'd miss by jumping to a conclusion. LLMs work the same way — tell the model to think step by step and the reasoning itself improves.</p></div>
@@ -1012,14 +1028,7 @@ const outs={
     <span class="jk2">"blocked_by"</span><span class="jp2">:</span> <span class="jn">null</span><span class="jp2">,</span>
     <span class="jk2">"component"</span><span class="jp2">:</span> <span class="jv">"feature-pipeline"</span>
   <span class="jp2">}</span>
-<span class="jp2">]</span>`,
- card:`<div class="cap">Format D \u00B7 Model Card</div>
-<h5>Model Card: Customer Churn Prediction Model</h5>
-<div class="sec" style="color:var(--orange2);font-weight:700;margin-top:8px">Status</div>In Development
-<div class="sec" style="color:var(--orange2);font-weight:700;margin-top:8px">Intended Use</div>Predicts which customers are likely to stop purchasing so marketing can target retention before they churn. Output is a churn risk score consumed by the campaign system.
-<div class="sec" style="color:var(--orange2);font-weight:700;margin-top:8px">Training Data &amp; Features</div>Trains on behavior signals in a feature store, sourced from warehouse events. PII masked before features reach the model.
-<div class="sec" style="color:var(--orange2);font-weight:700;margin-top:8px">Performance Target</div>Baseline 68% \u2192 target 85%+, validated on a holdout set before go-live.
-<div class="sec" style="color:var(--orange2);font-weight:700;margin-top:8px">Known Limitations &amp; Open Risks</div>Monitoring approach undecided \u00B7 fairness thresholds undefined \u00B7 no model-switch strategy \u00B7 rollback plan missing \u00B7 holdout test unscheduled.`
+<span class="jp2">]</span>`
 };
 const out=document.getElementById('fmtOut');
 const set=f=>{

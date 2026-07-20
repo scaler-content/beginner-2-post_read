@@ -320,7 +320,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
     <span class="chip">HANDS-ON</span>
   </div>
   <h1>Prompt Engineering <span class="amp">Basics</span></h1>
-  <p class="sub">Same AI. Same notes. Wildly different results. Today you learn the six techniques that separate a useless wall of text from output a senior data scientist would ship. Everything runs on <b>one story: Aisha's design review.</b></p>
+  <p class="sub">Same AI. Same notes. Wildly different results. Today you learn the six techniques that separate a useless wall of text from output a senior analyst would ship. Everything runs on <b>one story: Meera's T20 post-series review.</b></p>
   <div class="heroStats">
     <div class="hstat"><div class="n" data-count="6">0</div><div class="l">Techniques</div></div>
     <div class="hstat"><div class="n" data-count="7">0</div><div class="l">Live Simulators</div></div>
@@ -332,50 +332,46 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 
 <!-- ============ SCENARIO ============ -->
 <section class="blk" id="scenario"><div class="wrap">
-  <div class="secHead"><span class="secNum">SETUP</span><h2>The Scenario — Aisha's Design Review</h2><span class="secTime">⏱ 8 min</span></div>
-  <p class="secLede">Everything today connects back to one story. Read it once carefully. Every technique will help Aisha get progressively better results from this same raw material.</p>
-
-  
-
-  
+  <div class="secHead"><span class="secNum">SETUP</span><h2>The Scenario — Team India's Post-Series Review</h2><span class="secTime">⏱ 8 min</span></div>
+  <p class="secLede">Everything today connects back to one story. Read it once carefully. Every technique will help Meera get progressively better results from this same raw material.</p>
 
   <div class="slackPanel">
-    <div class="sh">Model Design Review — Customer Churn Prediction Project</div>
-    <div class="meta">11 April 2025, 10:00–10:50 AM · Attendees: Priya (DS Lead), Aisha (ML Engineer, new joiner), Karan (Data Engineer), Neha (MLOps), Vikram (PM)</div>
+    <div class="sh">Team India T20 Rebuild — Post-Series Review</div>
+    <div class="meta">13 July 2026, 10:00–10:50 AM · Attendees: Coach (Head Coach), Meera (Junior Performance Analyst, new joiner), Karan (Talent Scout), Neha (Fitness &amp; Workload Lead), Vikram (Team Operations Manager)</div>
     <ul>
-      <li>current churn model is rule-based at 68% accuracy, business needs 85%+ for retention campaigns</li>
-      <li>build the new system in 3 stages: feature-pipeline, training-pipeline, prediction-service</li>
-      <li>prediction-service must mask personal info (PII) before it ever reaches the model</li>
-      <li>aisha to build first working version using XGBoost by 25 apr, priya reviews</li>
-      <li>karan needs the final feature list ready by 20 apr so aisha can start training</li>
-      <li>raw events → data warehouse, processed features → feature store, neha wants version tracking from day one</li>
-      <li>automated retraining: new data lands → feature-pipeline processes → training-pipeline retrains on schedule</li>
-      <li>monitoring: debated data drift vs accuracy, no decision, priya wants comparison doc by 18 apr, nobody assigned</li>
-      <li>vikram: what happens to customers flagged mid-way through a model update? need safe model-switch</li>
-      <li>dashboards: neha sets up monitoring dashboards, needs model health metrics list by 22 apr</li>
-      <li>testing: neha wants a holdout test before go-live, no date, depends on aisha's prototype</li>
-      <li>fairness check: discussed, no decision on bias metrics or thresholds</li>
-      <li>rollback plan: not discussed, priya says add to next review agenda</li>
-      <li>next review: 18 apr same time</li>
+      <li>current T20 win rate has slipped under 40% over the last 7 series (2-0 loss to Ireland, then 4-0 whitewash by England); think tank wants back to 65%+ before the next ICC event</li>
+      <li>rebuild selection in 3 stages: domestic-scouting pipeline, A-team trial pipeline, senior playing-XI selection</li>
+      <li>player injury/fitness data must be anonymized before it's shared with broadcasters or media</li>
+      <li>meera to build a first version of a revised top-6 batting order model using recent domestic + IPL form by 25 Jul, coach reviews</li>
+      <li>karan needs the final probable-30 list ready by 20 Jul so trial matches can start</li>
+      <li>raw match footage/scorecards → analytics database, processed player metrics → performance dashboard, neha wants form-trend tracking from day one</li>
+      <li>monthly auto-refresh: new domestic season data → processed → player rankings update on schedule, no manual override needed</li>
+      <li>monitoring: debated recent-form vs career-average as primary selection metric, no decision, coach wants comparison doc by 18 Jul, nobody assigned</li>
+      <li>vikram: what happens to a player mid-way through a contract cycle if form dips — need a replacement/rotation policy</li>
+      <li>dashboards: neha sets up fitness &amp; form dashboards, needs metrics list by 22 Jul</li>
+      <li>testing: karan wants every new pick tested in 2+ domestic/A-team matches before senior selection, no date set</li>
+      <li>fairness check: zonal/regional representation in scouting discussed, no decision on metrics</li>
+      <li>rollback plan: what happens if the new XI also underperforms — not discussed, add to next agenda</li>
+      <li>next review: 27 Jul, same time</li>
     </ul>
   </div>
 
   <p style="font-family:var(--sans);font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin:30px 0 6px">Quick vocabulary — tap each card to flip</p>
   <div class="flipGrid">
     <div class="flip"><div class="flipIn">
-      <div class="flipFace"><div class="big">🔗</div><h4>ML Pipeline</h4><div class="mk">feature → training → serving</div><div class="flipHint">TAP TO FLIP ↻</div></div>
-      <div class="flipFace back"><h5>One big process → small stages</h5><p>Instead of one giant script, split into: <b>feature-pipeline</b> (prepares signals), <b>training-pipeline</b> (trains the model), <b>prediction-service</b> (answers "will this customer churn?" live).</p><p style="color:var(--teal)">Each part is built, tested, and improved on its own.</p></div>
+      <div class="flipFace"><div class="big">🔗</div><h4>Selection Pipeline</h4><div class="mk">scouting → trials → senior XI</div><div class="flipHint">TAP TO FLIP ↻</div></div>
+      <div class="flipFace back"><h5>One big call → small stages</h5><p>Instead of one person eyeballing everything, split it: <b>domestic-scouting pipeline</b> (spots talent), <b>A-team trial pipeline</b> (tests under pressure), <b>senior playing-XI selection</b> (the final call).</p><p style="color:var(--teal)">Each stage is run and improved on its own.</p></div>
     </div></div>
     <div class="flip"><div class="flipIn">
-      <div class="flipFace"><div class="big">🔒</div><h4>PII Masking</h4><div class="mk">data privacy</div><div class="flipHint">TAP TO FLIP ↻</div></div>
-      <div class="flipFace back"><h5>Disguise personal info</h5><p>Remove or replace names, emails, phone numbers before data reaches the model, so nothing traces back to an individual.</p><p style="color:var(--teal)">The model learns from buying patterns without ever "seeing" who the customer is.</p></div>
+      <div class="flipFace"><div class="big">🔒</div><h4>Fitness Data Masking</h4><div class="mk">player privacy</div><div class="flipHint">TAP TO FLIP ↻</div></div>
+      <div class="flipFace back"><h5>Disguise identifying info</h5><p>Strip names and identifying details from injury/workload data before it reaches broadcasters or media, so numbers get analyzed without turning into a headline about one player's body.</p><p style="color:var(--teal)">The dashboard learns the trend without ever "naming" the individual publicly.</p></div>
     </div></div>
     <div class="flip"><div class="flipIn">
-      <div class="flipFace"><div class="big">♻️</div><h4>Automated Retraining</h4><div class="mk">no manual "go" button</div><div class="flipHint">TAP TO FLIP ↻</div></div>
-      <div class="flipFace back"><h5>The model updates itself</h5><p>New data comes in, gets processed, and feeds training on a schedule — no one pressing "retrain" each time.</p><p style="color:var(--teal)">Weekly, fresh activity flows in so the model doesn't go stale as behavior changes.</p></div>
+      <div class="flipFace"><div class="big">♻️</div><h4>Auto-Updated Rankings</h4><div class="mk">no manual "go" button</div><div class="flipHint">TAP TO FLIP ↻</div></div>
+      <div class="flipFace back"><h5>Rankings update themselves</h5><p>New domestic-season data lands, gets processed, and feeds player rankings on a monthly schedule — no one pressing "recompute" each time.</p><p style="color:var(--teal)">Nobody has to manually recompute who's "in form."</p></div>
     </div></div>
   </div>
-  <div class="gapCallout"><b>13 minutes on the clock.</b> Aisha opens her AI chat window. What she types in the next few seconds decides whether Priya's reply is a 👍 or a 😬. Let's watch her first attempt.</div>
+  <div class="gapCallout"><b>13 minutes on the clock.</b> Meera opens her AI chat window. What she types in the next few seconds decides whether the coach's reply is a 👍 or a 😬. Let's watch her first attempt.</div>
   <div class="divider"></div>
 </div></section>
 
@@ -388,13 +384,13 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
     <p>Crafting your input to an AI model to maximize the quality, relevance, and usefulness of the output. Not tricking the AI — communicating clearly with it.</p>
   </div>
 
-  <div class="analogy"><div class="ic">💬</div><div><div class="tt">Analogy · The Vague Bug Report</div>
-    <p>"The model isn't working" vs "validation accuracy dropped from 85% to 61% right after last week's retrain — can you check if the new training data is leaking future info into the features?" Both ask for help. One gets an answer in ten minutes. The other wastes a day just decoding what you meant.</p></div>
+  <div class="analogy"><div class="ic">💬</div><div><div class="tt">Analogy · The Vague Match Report</div>
+    <p>"The team lost" vs "India's death-over economy rate spiked to 12.4 across the last 5 T20s, and the opposition is scoring 60% of their total in the last 5 overs — check if our yorker execution is breaking down under pressure." Both describe the same defeat. One gets a useful answer in ten minutes. The other wastes a day just decoding what you meant.</p></div>
   </div>
 
   <div class="sim">
     <h3>🔀 SIM 1 · Same Notes, Two Prompts</h3>
-    <p class="simSub">Same model, same source notes. Toggle between Aisha's first attempt and her structured version. Read the prompt on the left, its actual output on the right.</p>
+    <p class="simSub">Same model, same source notes. Toggle between Meera's first attempt and her structured version. Read the prompt on the left, its actual output on the right.</p>
     <div class="toggleRow" id="abToggle">
       <button class="on" data-ab="a">Prompt A · no structure</button>
       <button data-ab="b">Prompt B · structured</button>
@@ -428,12 +424,12 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   <div class="secHead"><span class="secNum">§ 2</span><h2>The RCTFC Framework</h2><span class="secTime">⏱ 20 min</span></div>
   <p class="secLede">What made Prompt B better? A five-part structure that works for every prompt you'll ever write: Role, Context, Task, Format, Constraints.</p>
 
-  <div class="analogy"><div class="ic">🍽️</div><div><div class="tt">Analogy · Ordering at a Restaurant</div>
+  <div class="analogy"><div class="ic">🍽️</div><div><div class="tt">Analogy · Ordering at a Dhaba</div>
     <p>"Give me food" vs "the grilled paneer tikka (<b>Task</b>), medium spice (<b>Constraint</b>), rice not naan (<b>Format</b>), I'm allergic to nuts (<b>Context</b>), and I trust your chef's seasoning (<b>Role</b>)." Same kitchen, wildly different meal. AI responds to specificity the same way.</p></div>
   </div>
 
-  <div class="analogy two"><div class="ic">📋</div><div><div class="tt">Second Analogy · Writing a Job Posting</div>
-    <p>A good JD names the <b>role</b> ("Senior Backend Engineer"), gives <b>context</b> (team, product stage), states the <b>task</b> (responsibilities), fixes a <b>format</b> (resume + portfolio link), and sets <b>constraints</b> (experience range, salary band). A vague JD gets you fifty mismatched resumes. A precise one gets you three great ones. Same five ingredients, same effect on an AI prompt.</p></div>
+  <div class="analogy two"><div class="ic">🏏</div><div><div class="tt">Second Analogy · Setting the Batting Order</div>
+    <p>Tell a junior analyst "sort out the batsmen" and who knows what you get. Tell them: "night chase under lights, heavy dew (<b>Context</b>), as the senior batting analyst (<b>Role</b>), finalize the top 6 (<b>Task</b>), numbered list with one reason each (<b>Format</b>), don't stack more than two left-handers back to back (<b>Constraint</b>)." Same five ingredients, same jump in usefulness.</p></div>
   </div>
 
   <div class="defBox"><span class="term">RCTFC Framework</span>
@@ -442,7 +438,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 
   <div class="sim">
     <h3>🧱 SIM 2 · RCTFC Builder</h3>
-    <p class="simSub">Click each element to add it to Aisha's prompt. Watch the prompt assemble and the quality meter climb from Vague to Production-ready.</p>
+    <p class="simSub">Click each element to add it to Meera's prompt. Watch the prompt assemble and the quality meter climb from Vague to Production-ready.</p>
     <div class="chipRow" id="rctfcChips">
       <div class="rctfcChip" data-k="R"><span class="let">R</span> Role</div>
       <div class="rctfcChip" data-k="C1"><span class="let">C</span> Context</div>
@@ -457,8 +453,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   </div>
 
   <table class="tbl"><thead><tr><th>Element</th><th>What Prompt B Said</th><th>What It Prevented</th></tr></thead><tbody>
-    <tr><td>Role</td><td>"senior data scientist"</td><td>An intern-level surface summary</td></tr>
-    <tr><td>Context</td><td>"junior ML engineer, design review, posted in Slack for sprint planning"</td><td>Wrong audience / tone</td></tr>
+    <tr><td>Role</td><td>"senior performance analyst"</td><td>An intern-level surface summary</td></tr>
+    <tr><td>Context</td><td>"junior analyst, post-series review, going to the chief selector tonight"</td><td>Wrong tone, wrong audience</td></tr>
     <tr><td>Task</td><td>"Turn raw notes into structured summary"</td><td>Rambling or wrong deliverable</td></tr>
     <tr><td>Format</td><td>"Overview, Decisions, Action Items table, Open Questions, Risks"</td><td>Wall-of-text output</td></tr>
     <tr><td>Constraints</td><td>"Under 500 words, TBD for unknowns, don't invent"</td><td>Making things up, bloat</td></tr>
@@ -466,15 +462,15 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 
   <p style="font-family:var(--sans);font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin:30px 0 6px">RCTFC in three domains — it's not just for meeting notes</p>
   <table class="tbl"><thead><tr><th>Domain</th><th>Role</th><th>Context</th><th>Task</th><th>Format</th><th>Constraints</th></tr></thead><tbody>
-    <tr><td>Summary</td><td>Senior DS</td><td>Design review notes</td><td>Structured summary</td><td>5 sections</td><td>&lt;500 words, TBD unknowns</td></tr>
-    <tr><td>SQL generation</td><td>Senior data engineer</td><td>Customers table, columns listed</td><td>Write query for a specific question</td><td>Postgres SQL, formatted</td><td>No SELECT *, use CTEs</td></tr>
-    <tr><td>Post-mortem</td><td>SRE lead</td><td>Slack incident thread</td><td>Blameless post-mortem</td><td>5-Whys sections</td><td>Exact timeline, no blame</td></tr>
+    <tr><td>Review Summary</td><td>Senior Analyst</td><td>Post-series notes</td><td>Structured summary</td><td>5 sections</td><td>&lt;500 words, TBD unknowns</td></tr>
+    <tr><td>Scouting Shortlist</td><td>Senior Scout</td><td>Domestic stats table</td><td>Shortlist for a slot</td><td>Ranked list + reason</td><td>No unverified stats</td></tr>
+    <tr><td>Selection Post-Mortem</td><td>Team Ops Lead</td><td>Analyst group chat</td><td>Blameless post-mortem</td><td>5-Whys sections</td><td>Exact timestamps, no blame</td></tr>
   </tbody></table>
 
-  <p class="bigQuote">Both a great prompt and a great problem statement follow the same principle: <em>specificity in, quality out.</em></p>
+  <p class="bigQuote">Both a great prompt and a great team brief follow the same principle: <em>specificity in, quality out.</em></p>
 
-  <div class="note danger"><b>Danger case — contradictory constraints:</b> Aisha writes Task: "include the full raw transcript of every speaker" and Constraints: "under 500 words." The model can't do both — it either blows past the word limit or silently drops the transcript, and you won't know which without checking. RCTFC only helps when its five elements agree with each other.</div>
-  <div class="note beg"><b>Beginner note:</b> You don't need all five elements every time. For "What does overfitting mean?", just the Task is enough. For anything needing more than a one-line answer, RCTFC is your go-to.</div>
+  <div class="note danger"><b>Danger case — contradictory constraints:</b> Meera writes Task: "include the full over-by-over commentary of the death overs" and Constraints: "under 500 words." The model can't do both — it either blows past the word limit or silently drops the commentary, and you won't know which without checking. RCTFC only helps when its five elements agree with each other.</div>
+  <div class="note beg"><b>Beginner note:</b> You don't need all five elements every time. For "What does a googly do to the ball?", just the Task is enough. For anything needing more than a one-line answer, RCTFC is your go-to.</div>
   <div class="note pro"><b>Pro note:</b> The five elements don't have to appear in R-C-T-F-C order. Some of the best prompts open with the Task and close with Constraints. What matters is that all five show up somewhere — not the sequence.</div>
   <div class="note adv"><b>Coming in Class 3:</b> Today, all five RCTFC elements live inside one prompt you retype every time. In production they get split up — Role + Context + Constraints get frozen once into a persistent <b>system prompt</b> that survives across every request, while only Task + Format change per call. Why that split exists, and what breaks when teams get it wrong, is where Class 3 starts.</div>
   <div class="note biz"><b>In the industry:</b> OpenAI's own developer docs teach prompt structure around this same idea — role, context, and constraints up front. RCTFC just adds an explicit Role slot because it matters even more once a prompt goes into a real product.</div>
@@ -489,12 +485,12 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   <div class="secHead"><span class="secNum">§ 3</span><h2>Few-Shot Prompting + Output Formatting</h2><span class="secTime">⏱ 30 min</span></div>
   <p class="secLede">RCTFC gives structure. But when output must match a very specific format — your team's template — instructions alone can't capture the nuance. Instead of describing the format, you SHOW it. Both few-shot and format control are about the same thing: controlling the <em>shape</em> of the output.</p>
 
-  <div class="analogy"><div class="ic">👥</div><div><div class="tt">Analogy · Onboarding a New Teammate</div>
-    <p>Telling a new hire "write it up clearly" is <b>zero-shot</b> — they guess. Showing them three of your team's best experiment write-ups and saying "document it like this" is <b>few-shot</b>. Same person, dramatically better first draft.</p></div>
+  <div class="analogy"><div class="ic">🧢</div><div><div class="tt">Analogy · Coaching the Debutant</div>
+    <p>Telling a debutant bowler "bowl good yorkers" is <b>zero-shot</b> — he's guessing what "good" means. Showing him footage of three senior bowlers executing yorkers in the death overs and saying "like this" is <b>few-shot</b>. Same bowler, dramatically better first attempt.</p></div>
   </div>
 
-  <div class="analogy two"><div class="ic">🎨</div><div><div class="tt">Second Analogy · Style Transfer</div>
-    <p>Words often fail where examples succeed. You can't fully describe "paint like Van Gogh" in a sentence — but hand an artist three Van Gogh paintings and say "more like this," and they get it instantly. Few-shot prompting is the same move: stop describing the style, show it.</p></div>
+  <div class="analogy two"><div class="ic">🎙️</div><div><div class="tt">Second Analogy · Commentary Style Transfer</div>
+    <p>You can't fully describe "more energy, less dry stats" in one sentence — but play a clip of a commentator who does exactly that and say "more like this," and the model gets it instantly. Few-shot prompting is the same move: stop describing the style, show it.</p></div>
   </div>
 
   <div class="grid2">
@@ -502,11 +498,11 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
     <div class="defBox" style="margin:0"><span class="term">Few-Shot</span><p>2–3 examples of the exact output you want, then the task. The examples teach the model your specific style.</p></div>
   </div>
 
-  <div class="note danger"><b>Danger case — inconsistent examples:</b> Aisha grabs 3 old action-item messages fast — but one uses "Owner:", another uses "Assigned to:", and the third skips priority entirely. Few-shot with inconsistent examples doesn't average them into a clean format — it confuses the model into blending fields unpredictably. Bad examples are worse than no examples.</div>
+  <div class="note danger"><b>Danger case — inconsistent examples:</b> Meera grabs 3 old action-item messages fast — one uses "Owner:", another "Assigned to:", a third skips priority entirely. Few-shot with inconsistent examples doesn't average them into a clean format — it confuses the model into blending fields unpredictably. Bad examples are worse than no examples.</div>
 
   <div class="sim">
     <h3>🔃 SIM 3 · Zero-Shot vs Few-Shot Switch</h3>
-    <p class="simSub">Same task: extract action items from Aisha's notes. Flip the switch and watch few-shot gain the exact fields your team's template uses — highlighted in green.</p>
+    <p class="simSub">Same task: extract action items from Meera's notes. Flip the switch and watch few-shot gain the exact fields the committee's template uses — highlighted in green.</p>
     <div class="toggleRow" id="fsToggle">
       <button class="on" data-fs="zero">Zero-Shot · no examples</button>
       <button data-fs="few">Few-Shot · 3 examples</button>
@@ -521,37 +517,42 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   
 
   <div class="note adv"><b>Advanced note:</b> More examples isn't always better. Past ~5 examples, the model can start over-fitting to quirks of your specific examples rather than the general pattern. 2-3 well-chosen examples is the sweet spot for most tasks.</div>
-  <div class="note biz"><b>In the industry:</b> Zomato's support bot reportedly uses few-shot prompting with 3-5 previous ticket resolutions as examples — that's how a generic model ends up sounding like it always has.</div>
+  <div class="note biz"><b>In the industry:</b> Analytics-driven IPL franchises reportedly lean on few-shot prompting with past scouting reports as examples — that's part of how a generic model ends up sounding like it always has, in a specific team's voice.</div>
 
   <div class="quiz">
-    <p class="q">Quiz 2 · Your team has a specific incident-postmortem format with sections like "Summary," "Root Cause," "Impact," and "Action Items" in a very particular style. You want the AI to produce one in exactly this format. Which approach is most effective?</p>
+    <p class="q">Quiz 2 · Your franchise has a specific Player Report Card format with sections like "Role &amp; Style," "Recent Form," "Fitness Status," and "Risk Flags" in a very particular style. You want the AI to produce one in exactly this format. Which approach is most effective?</p>
     <div class="opt" data-r="w"><span class="ab">A</span>Zero-shot: describe the format in words and trust the model to figure it out</div>
-    <div class="opt" data-r="c"><span class="ab">B</span>Few-shot: paste 2-3 examples of your team's actual postmortems, then ask the model to produce one</div>
-    <div class="opt" data-r="w"><span class="ab">C</span>Just ask "Write a postmortem" and manually reformat afterward</div>
+    <div class="opt" data-r="c"><span class="ab">B</span>Few-shot: paste 2-3 examples of your team's actual player report cards, then ask the model to produce one</div>
+    <div class="opt" data-r="w"><span class="ab">C</span>Just ask "Write a player report card" and manually reformat afterward</div>
     <div class="opt" data-r="w"><span class="ab">D</span>Use a higher temperature setting for more creative formatting</div>
-    <div class="quizWhy"><b>Why B?</b> When output must match a specific template, showing beats telling. You don't hand a new teammate a 20-page style guide — you show them three great postmortems and say "do it like this."</div>
+    <div class="quizWhy"><b>Why B?</b> When output must match a specific template, showing beats telling. You don't hand a new teammate a 20-page style guide — you show them three great report cards and say "do it like this."</div>
   </div>
 
   <div class="divider" style="margin:44px 0"></div>
-  <p class="secLede" style="margin-top:0">Few-shot solved the template problem for one audience. But Aisha's notes need to reach three different audiences — a Slack update, a sprint tracker, and a JSON payload for another tool. Same information, three shapes. That's <b>output formatting</b>.</p>
+  <p class="secLede" style="margin-top:0">Few-shot solved the template problem for one audience. But Meera's notes need to reach four different people — a WhatsApp update, a selection table, a JSON payload for the analytics tool, and a formal player report. Same information, four shapes. That's <b>output formatting</b>.</p>
 
   <div class="defBox"><span class="term">Output Formatting</span>
-    <p>Explicitly defining the structure, shape, and style of the AI's response. Like writing <code class="k">SELECT customer_id, churn_score FROM customers</code> instead of "give me customer data" — you get exactly what you specified.</p>
+    <p>Explicitly defining the structure, shape, and style of the AI's response. Like specifying exact scorecard columns instead of "give me the match data" — you get exactly what you asked for.</p>
   </div>
 
-  <div class="analogy two"><div class="ic">🔌</div><div><div class="tt">Second Analogy · The API Contract</div>
-    <p>The AI is your junior dev. You wouldn't say "give me some data" and hope — you'd say "return JSON with these 5 fields, these types, this key order." Output formatting is that same rigor, applied to a chat model instead of a function signature.</p></div>
+  <div class="analogy two"><div class="ic">🏟️</div><div><div class="tt">Second Analogy · The Scorecard Contract</div>
+    <p>You wouldn't accept a scorecard missing overs bowled or strike rate — a scorecard has a contract: these fields, in this order, every time. Output formatting is that same rigor applied to a chat model instead of a printed sheet.</p></div>
   </div>
 
-  <div class="note danger"><b>Danger case — over-specified format:</b> Aisha defines a JSON schema with 20 required fields for a 3-sentence status update. The source material only supports 6 of them. Rather than leaving fields blank, the model invents plausible-sounding values to fill the schema. Format control only helps when the shape you ask for matches the substance you actually have.</div>
+  <div class="note danger"><b>Danger case — over-specified format:</b> Meera defines a JSON schema with 20 required fields for a 3-line WhatsApp update. The source notes only support 6 of them. Rather than leaving fields blank, the model invents plausible-sounding values to fill the schema. Format control only helps when the shape matches the substance you actually have.</div>
+
+  <div class="defBox"><span class="term">Player Report Card</span>
+    <p>A short, standardized document describing a player — role, recent form, strengths/weaknesses, fitness status — so any selector can understand what a player brings before relying on them.</p>
+  </div>
 
   <div class="sim">
     <h3>🔲 SIM 5 · Output Format Switcher</h3>
-    <p class="simSub">One information source, three output shapes. Aisha needs to share the same review with three different audiences. Click a tab.</p>
+    <p class="simSub">One information source, four output shapes. Meera needs to share the same review with four different audiences. Click a tab.</p>
     <div class="fmtTabs" id="fmtTabs">
-      <button class="fmtTab on" data-f="slack">💬 Slack Update</button>
-      <button class="fmtTab" data-f="table">📊 Sprint Table</button>
+      <button class="fmtTab on" data-f="wa">💬 WhatsApp Update</button>
+      <button class="fmtTab" data-f="table">📊 Selection Table</button>
       <button class="fmtTab" data-f="json">🧩 JSON</button>
+      <button class="fmtTab" data-f="card">📄 Player Report Card</button>
     </div>
     <div class="fmtOut" id="fmtOut"></div>
   </div>
@@ -566,10 +567,10 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 <!-- ============ SECTION 4 ============ -->
 <section class="blk" id="s4"><div class="wrap">
   <div class="secHead"><span class="secNum">§ 4</span><h2>Chain-of-Thought Reasoning</h2><span class="secTime">⏱ 13 min</span></div>
-  <p class="secLede">Priya's follow-up isn't a formatting ask — it's a reasoning ask. Some tasks need the AI to actually think through a problem, not just organize text that's already there.</p>
+  <p class="secLede">The coach's follow-up isn't a formatting ask — it's a reasoning ask. Some tasks need the AI to actually think through a problem, not just organize text that's already there.</p>
 
   <p style="font-family:var(--sans);font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin:30px 0 6px">Warm-Up · What Does "Chain of Thought" Even Mean?</p>
-  <p style="font-size:14px;color:var(--ink2)">Forget design reviews for a second. Take the simplest possible problem: <b>23 × 47 = ?</b> Watch the difference between blurting an answer and working it out.</p>
+  <p style="font-size:14px;color:var(--ink2)">Forget cricket for a second. Take the simplest possible problem: <b>23 × 47 = ?</b> Watch the difference between blurting an answer and working it out.</p>
   <div class="cotVs" style="margin-top:14px">
     <div class="cotAns shallow">
       <h5>😬 Straight to the Answer (no CoT)</h5>
@@ -587,44 +588,44 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       <p style="font-size:12px;color:var(--green);margin-top:8px">Same final answer — but every step is checkable. If Step 3 had said 23 × 7 = 151, you'd catch it right there instead of trusting a wrong 1071.</p>
     </div>
   </div>
-  <p style="font-size:14px;color:var(--ink2);margin-top:14px">That's the whole idea, no domain knowledge required: <b>chain-of-thought means don't jump straight to the final answer — make the model lay out its intermediate steps first.</b> It works for splitting a two-digit multiplication. It works exactly the same way when the "problem" is which risk to flag to Priya first — just bigger, messier steps instead of arithmetic.</p>
+  <p style="font-size:14px;color:var(--ink2);margin-top:14px">That's the whole idea, no cricket required: <b>chain-of-thought means don't jump straight to the final answer — make the model lay out its intermediate steps first.</b> It works for splitting a two-digit multiplication. It works exactly the same way when the "problem" is which risk to flag to the coach first — just bigger, messier steps instead of arithmetic.</p>
 
-  <div class="analogy"><div class="ic">🦆</div><div><div class="tt">Analogy · Rubber Duck Debugging</div>
-    <p>When you're stuck, explaining the problem step by step to a rubber duck often reveals the answer. Articulating your reasoning catches errors you'd miss by jumping to a conclusion. LLMs work the same way — tell the model to think step by step and the reasoning itself improves.</p></div>
+  <div class="analogy"><div class="ic">🎯</div><div><div class="tt">Analogy · The Captain's Field Chat</div>
+    <p>Before setting an unusual field, a good captain doesn't just blurt "third man out, mid-on in." He talks it through with the bowler out loud — pitch conditions, the batter's scoring zones, overs left. Saying it out loud catches gaps before the ball is bowled. Chain-of-thought is the same move: telling the model to think step by step surfaces reasoning errors before you see the final answer.</p></div>
   </div>
 
-  <div class="analogy two"><div class="ic">➗</div><div><div class="tt">Second Analogy · Long Division on Paper</div>
-    <p>You can't do 847 × 293 reliably in your head — but write out the intermediate steps and the answer gets much more reliable. The LLM is no different: forcing it to externalize intermediate steps measurably improves the odds the final answer is right.</p></div>
+  <div class="analogy two"><div class="ic">🧮</div><div><div class="tt">Second Analogy · Working Out the Revised Target</div>
+    <p>After a rain interruption, nobody just guesses the target. You write it out: overs remaining, wickets in hand, par score, revised target. Skip a step and you get it wrong. An AI is no different — force it to externalize intermediate steps and the odds of a correct final answer go up a lot.</p></div>
   </div>
 
   <div class="defBox"><span class="term">Chain-of-Thought (CoT) Prompting</span>
     <p>Explicitly asking the AI to reason through a problem step by step before its final answer. The model "shows its work" — and that process produces better results.</p>
   </div>
 
-  <div class="note danger"><b>Danger case — CoT on a task that doesn't need it:</b> Ask "think step by step" before "translate 'churn' to Hindi" and you get a paragraph of unnecessary deliberation before a one-word answer — slower, and sometimes the reasoning talks the model into second-guessing a perfectly correct instinct. Reserve CoT for tasks that actually require multiple reasoning steps.</div>
+  <div class="note danger"><b>Danger case — CoT on a task that doesn't need it:</b> Ask "think step by step" before "what does a googly do to the ball?" and you get a paragraph of unnecessary deliberation before a one-line answer — slower, and sometimes the reasoning talks the model into second-guessing a correct instinct. Reserve CoT for tasks that actually require multiple reasoning steps.</div>
 
   <div class="sim">
     <h3>🔗 SIM 4 · Chain-of-Thought Stepper</h3>
-    <p class="simSub">Task: "Which open risk is most urgent to flag to Priya?" The direct answer is shallow. Press Run reasoning to watch CoT map dependencies step by step — the model's own trace is shown below, not just its conclusion.</p>
+    <p class="simSub">Task: "Which open risk is most urgent to flag to the coach?" The direct answer is shallow. Press Run reasoning to watch CoT map dependencies step by step — the model's own trace is shown below, not just its conclusion.</p>
     <div class="cotVs">
       <div class="cotAns shallow">
         <h5>😓 Direct Answer (no CoT)</h5>
         <ul>
-          <li>Unresolved monitoring approach</li>
-          <li>Training blocked on missing feature list</li>
-          <li>Model swap strategy not defined</li>
+          <li>Unresolved form-metric debate</li>
+          <li>Trials blocked on missing probable-30 list</li>
+          <li>No rollback plan if new XI underperforms</li>
         </ul>
-        <p style="font-size:12px;color:var(--ink3);margin-top:8px">Plausible but shallow. Three items, no ranking, no reasoning for why any one is "most urgent." Misses cascade chains and the rollback plan nobody discussed.</p>
+        <p style="font-size:12px;color:var(--ink3);margin-top:8px">Plausible but shallow. Three items, no ranking, no reasoning for why any one is "most urgent." Misses cascade chains and which gap actually blocks the most downstream work.</p>
       </div>
       <div class="cotAns deep" id="cotDeep">
         <h5>🧠 Chain-of-Thought Answer</h5>
         <ul>
-          <li><b>Step 1 — Map:</b> Feature list (Apr 20), Prototype (Apr 25), Holdout (TBD), Dashboards (Apr 22), Rollback (undiscussed)</li>
-          <li><b>Step 2 — Dependency chains:</b> Feature list → Training → Prototype → Holdout → Go-live</li>
-          <li><b>Step 3 — Flag ownerless items:</b> Monitoring comparison doc has no owner and no clear deadline</li>
-          <li><b>Step 4 — Trace cascades:</b> Feature list slippage cascades through 4 downstream stages; monitoring gap blocks dashboards → alerting → go-live readiness</li>
-          <li><b>Step 5 — What's missing:</b> Rollback plan was never discussed at all</li>
-          <li><b>Final answer:</b> The feature list is the single highest-blast-radius risk — a slip on Apr 20 delays everything downstream of it. Second: the ownerless monitoring doc, since nobody is accountable for unblocking it.</li>
+          <li><b>Step 1 — Map:</b> Probable-30 (20 Jul), Batting model (25 Jul), Dashboard metrics (22 Jul), Domestic testing (no date), Rollback plan (undiscussed)</li>
+          <li><b>Step 2 — Dependency chains:</b> Probable-30 → Trials → Batting model → Domestic testing → Final selection</li>
+          <li><b>Step 3 — Flag ownerless items:</b> Recent-form-vs-career-average comparison doc has no owner and no deadline</li>
+          <li><b>Step 4 — Trace cascades:</b> Probable-30 slippage on 20 Jul cascades through 4 downstream stages; the form-metric gap blocks a clean rationale for every pick after it</li>
+          <li><b>Step 5 — What's missing:</b> A rollback plan was never discussed at all</li>
+          <li><b>Final answer:</b> The probable-30 list is the single highest-blast-radius risk — a slip on 20 Jul delays everything downstream. Second: the ownerless form-metric decision, since nobody is accountable for unblocking it.</li>
         </ul>
         <p style="font-size:12px;color:var(--green);margin-top:8px">The steps are visible in the output — CoT didn't just relabel the same list, it produced a ranked, reasoned answer no direct prompt gave us.</p>
       </div>
@@ -645,12 +646,12 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   <div class="note biz"><b>In the industry:</b> Anthropic's Claude was one of the first models to bake this in natively — they call it "extended thinking." The technique you just used by hand is the same one, just automated.</div>
 
   <div class="quiz">
-    <p class="q">Quiz 3 · Aisha wants the AI to trace dependency chains and identify cascade risks rather than just listing obvious problems. Which technique should she add?</p>
+    <p class="q">Quiz 3 · Meera wants the AI to trace dependency chains and identify cascade risks rather than just listing obvious problems. Which technique should she add?</p>
     <div class="opt" data-r="w"><span class="ab">A</span>Few-shot prompting — provide examples of risk assessments</div>
     <div class="opt" data-r="c"><span class="ab">B</span>Chain-of-thought — ask the model to map dependencies step by step before identifying the riskiest one</div>
     <div class="opt" data-r="w"><span class="ab">C</span>Output formatting — define the exact table columns for the risk report</div>
     <div class="opt" data-r="w"><span class="ab">D</span>Zero-shot — just ask "what's the riskiest dependency?" clearly</div>
-    <div class="quizWhy"><b>Why B?</b> When the task requires reasoning — not just organizing or formatting — chain-of-thought is your tool. Few-shot controls format, CoT controls thinking depth. Aisha needs the AI to actually trace the dependency chains before picking the riskiest one.</div>
+    <div class="quizWhy"><b>Why B?</b> When the task requires reasoning — not just organizing or formatting — chain-of-thought is your tool. Few-shot controls format, CoT controls thinking depth. Meera needs the AI to actually trace the dependency chains before picking the riskiest one.</div>
   </div>
   <div class="divider"></div>
 </div></section>
@@ -660,8 +661,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   <div class="secHead"><span class="secNum">§ 5</span><h2>Refining a Prompt in Five Rounds</h2><span class="secTime">⏱ 17 min</span></div>
   <p class="secLede">Almost nobody writes a great prompt on the first try. Prompt refinement IS debugging: write, read the output, identify the failure, fix one thing, run again.</p>
 
-  <div class="analogy"><div class="ic">🐞</div><div><div class="tt">Analogy · Debugging, Not Dictation</div>
-    <p>Nobody ships their first draft of a model. Don't ship your first draft of a prompt. Aisha needs to email Priya a summary of her action items, flag concerns, and propose a plan. Watch it evolve.</p></div>
+  <div class="analogy"><div class="ic">🥅</div><div><div class="tt">Analogy · Facing the Nets, Not the Match</div>
+    <p>No batsman walks into a net session expecting the first ball to be perfect. You face a ball, adjust your foot position, face the next, adjust your backlift — one change per ball, not a random reshuffle of your whole technique. A prompt improves the same way: one deliberate fix per round. Meera needs to send the coach a summary of her action items, flag concerns, and propose a plan. Watch it evolve.</p></div>
   </div>
 
   <div class="analogy two"><div class="ic">📷</div><div><div class="tt">Second Analogy · A Photographer's First Shot</div>
@@ -672,7 +673,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 
   <div class="sim">
     <h3>🎚️ SIM 6 · Five-Round Refinement Slider</h3>
-    <p class="simSub">Drag the slider from Round 1 to Round 5. Watch the prompt grow, the RCTFC element added each round, and the output quality bar climb.</p>
+    <p class="simSub">Meera needs to send the coach a summary, flag concerns, and propose a plan. Drag the slider from Round 1 to Round 5 and watch the prompt grow, the RCTFC element added each round, and the output quality bar climb.</p>
     <input type="range" id="roundSlider" min="1" max="5" value="1" step="1">
     <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--ink3);margin:6px 0 4px">
       <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
@@ -702,9 +703,9 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   
 
   <div class="quiz">
-    <p class="q">Quiz 4 · Aisha gets output that is factually correct and well-structured, but the tone is too formal for an internal Slack message — it reads like a legal document. What is the most effective next step?</p>
+    <p class="q">Quiz 4 · Meera's output is factually correct and well-structured, but the tone is too formal for an internal WhatsApp update — it reads like a press release. What is the most effective next step?</p>
     <div class="opt" data-r="w"><span class="ab">A</span>Rewrite the entire prompt from scratch with a different approach</div>
-    <div class="opt" data-r="c"><span class="ab">B</span>Add a constraint specifying the desired tone (e.g., "casual, peer-to-peer, like a Slack message")</div>
+    <div class="opt" data-r="c"><span class="ab">B</span>Add a constraint specifying the desired tone (e.g., "casual, peer-to-peer, like a WhatsApp message")</div>
     <div class="opt" data-r="w"><span class="ab">C</span>Switch to a different AI model that naturally writes more casually</div>
     <div class="opt" data-r="w"><span class="ab">D</span>Manually edit the output to fix the tone</div>
     <div class="quizWhy"><b>Why B?</b> The output was close — correct facts, good structure — so the fix is surgical, not a rewrite. Diagnose what's wrong (tone too formal), fix that one thing (add a tone constraint), run again. Exactly like debugging a model: you don't retrain from scratch because one hyperparameter is off.</div>
@@ -723,27 +724,26 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   </div>
 
   <div class="chalCard" id="chal1">
-    <div class="chalHead"><span class="cn">C1</span><h4>The Incident Commander</h4><span class="chev">▶</span></div>
+    <div class="chalHead"><span class="cn">C1</span><h4>The Death-Overs Debrief</h4><span class="chev">▶</span></div>
     <div class="chalBody">
-      <div class="cLabel">The Setup — a live incident, as it unfolded in Slack</div>
+      <div class="cLabel">The Setup — a live analyst chat during the 5th T20 vs England, 11 July 2026, as the match slipped away</div>
       <div class="slackThread">
-<span class="ts">[10:14]</span> <span class="u">neha-mlops:</span> The churn model's live predictions are failing. Error rate up from 0.1% to 34% in 5 minutes.<br>
-<span class="ts">[10:16]</span> <span class="u">priya-lead:</span> Looks like the system that fetches customer features is timing out — it's out of capacity.<br>
-<span class="ts">[10:18]</span> <span class="u">aisha-ml:</span> Confirmed — the feature store can only handle 50 requests at once, and we're getting 200+.<br>
-<span class="ts">[10:19]</span> <span class="u">neha-mlops:</span> Raising the capacity limit to 200. ETA 3 min.<br>
-<span class="ts">[10:22]</span> <span class="u">priya-lead:</span> Error rate dropping. Down to 8%.<br>
-<span class="ts">[10:25]</span> <span class="u">neha-mlops:</span> Capacity increase complete. Error rate 0.3%. Stable.<br>
-<span class="ts">[10:28]</span> <span class="u">aisha-ml:</span> ~340 failed predictions in the 11-minute window.<br>
-<span class="ts">[10:30]</span> <span class="u">priya-lead:</span> Incident resolved. Aisha, write the post-mortem.
+<span class="ts">[18.7]</span> <span class="u">neha-fitness:</span> Bowler's already sent down 3 overs today — workload flag, should not bowl over 19<br>
+<span class="ts">[18.9]</span> <span class="u">karan-scout:</span> He's being sent for over 19 anyway, flag overridden<br>
+<span class="ts">[19.1]</span> <span class="u">meera-analyst:</span> 24 runs off over 19. Total swung from a defendable 190 to a chaseable 214.<br>
+<span class="ts">[19.3]</span> <span class="u">coach:</span> Who approved that bowling change?<br>
+<span class="ts">[19.5]</span> <span class="u">karan-scout:</span> Vice-captain's call in the moment — the workload flag never reached him live<br>
+<span class="ts">[19.6]</span> <span class="u">meera-analyst:</span> Match lost by 56 runs, but the 19th over is where it turned<br>
+<span class="ts">[19.8]</span> <span class="u">coach:</span> Vikram, get a review doc together — blameless, we need to know why the flag didn't reach the field in time
       </div>
       <div class="cLabel">Your Mission</div>
-      <p class="mission">Write a prompt that transforms this Slack thread into a blameless post-mortem — a document explaining what happened, why, and what prevents it from happening again (learning, not blaming).</p>
+      <p class="mission">Write a prompt that transforms this thread into a blameless review — what happened, why, and what prevents it from happening again.</p>
       <div class="cLabel">You Pass If (tap to tick)</div>
       <ul class="passList" data-key="c1">
         <li><span class="box">✓</span> Has Summary, Timeline, Root Cause (asking "why" repeatedly), Impact, Resolution, Action Items</li>
-        <li><span class="box">✓</span> Timeline uses the exact timestamps</li>
-        <li><span class="box">✓</span> Action items are about PREVENTION, not just resolution</li>
-        <li><span class="box">✓</span> Blameless tone throughout</li>
+        <li><span class="box">✓</span> Timeline uses the exact over/ball timestamps</li>
+        <li><span class="box">✓</span> Action items are about PREVENTION, not just describing the fix in the moment</li>
+        <li><span class="box">✓</span> Blameless tone throughout — no naming the bowler or vice-captain as "at fault"</li>
       </ul>
       <div class="passScore" data-score="c1">0 / 4 criteria met</div>
       <div class="cLabel">Techniques to Use</div>
@@ -752,22 +752,22 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   </div>
 
   <div class="chalCard" id="chal2">
-    <div class="chalHead"><span class="cn">C2</span><h4>One Meeting, Four Audiences <span style="font-size:12px;color:var(--gold);font-family:var(--mono)">STRETCH · TONIGHT'S HOMEWORK</span></h4><span class="chev">▶</span></div>
+    <div class="chalHead"><span class="cn">C2</span><h4>One Review, Four Audiences <span style="font-size:12px;color:var(--gold);font-family:var(--mono)">STRETCH · TONIGHT'S HOMEWORK</span></h4><span class="chev">▶</span></div>
     <div class="chalBody">
       <div class="cLabel">The Setup</div>
-      <p class="mission">Aisha's original design review notes (from the top of this page).</p>
+      <p class="mission">Meera's original post-series review notes (from the top of this page).</p>
       <div class="cLabel">Your Mission — write FOUR separate prompts</div>
       <table class="tbl"><thead><tr><th>Output</th><th>Audience</th><th>Key Requirement</th></tr></thead><tbody>
-        <tr><td>A. Executive summary</td><td>VP of Data Science</td><td>Under 100 words, no jargon, focus on dates and risks</td></tr>
-        <tr><td>B. Sprint tickets</td><td>Project tracker</td><td>Each action item as a ticket with criteria for "done"</td></tr>
-        <tr><td>C. Dependency map</td><td>Data science team</td><td>Which tasks block which, as a simple list or table</td></tr>
-        <tr><td>D. Handoff brief</td><td>Data engineer Karan</td><td>Exactly what he needs to prepare: what to name things, what to track, and how often to update it</td></tr>
+        <tr><td>A. Executive summary</td><td>Chief Selector</td><td>Under 100 words, no jargon, focus on dates and risks</td></tr>
+        <tr><td>B. Ops tickets</td><td>Team ops tracker</td><td>Each action item as a ticket with criteria for "done"</td></tr>
+        <tr><td>C. Dependency map</td><td>Coaching staff</td><td>Which tasks block which, as a simple list or table</td></tr>
+        <tr><td>D. Handoff brief</td><td>Karan (Talent Scout)</td><td>Exactly what he needs to prepare: naming, tracking, update cadence</td></tr>
       </tbody></table>
       <div class="cLabel">You Pass If (tap to tick)</div>
       <ul class="passList" data-key="c2">
         <li><span class="box">✓</span> Four genuinely different structures — not the same output reworded</li>
         <li><span class="box">✓</span> Executive summary is under 100 words with no jargon</li>
-        <li><span class="box">✓</span> Sprint tickets include criteria for "done"</li>
+        <li><span class="box">✓</span> Ops tickets include criteria for "done"</li>
         <li><span class="box">✓</span> Dependency map shows which task blocks which</li>
       </ul>
       <div class="passScore" data-score="c2">0 / 4 criteria met</div>
@@ -777,12 +777,12 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   </div>
 
   <div class="quiz">
-    <p class="q">Quiz 5 · You need to turn a raw Slack incident thread into a formal post-mortem that follows your company's template AND traces the root cause deeply. Which combination gives the best result?</p>
+    <p class="q">Quiz 5 · You need to turn a raw analyst group-chat thread into a formal post-mortem that follows your team's template AND traces the root cause deeply. Which combination gives the best result?</p>
     <div class="opt" data-r="w"><span class="ab">A</span>RCTFC only — a well-structured prompt is sufficient</div>
-    <div class="opt" data-r="w"><span class="ab">B</span>RCTFC + Few-shot — provide your company's template as examples</div>
+    <div class="opt" data-r="w"><span class="ab">B</span>RCTFC + Few-shot — provide your team's template as examples</div>
     <div class="opt" data-r="c"><span class="ab">C</span>RCTFC + Few-shot + Chain-of-thought — template examples AND step-by-step root-cause reasoning</div>
     <div class="opt" data-r="w"><span class="ab">D</span>Chain-of-thought only — just tell the model to think step by step</div>
-    <div class="quizWhy"><b>Why C?</b> This task has three requirements: structure (RCTFC), specific format (few-shot with your template), and deep reasoning (chain-of-thought for the 5-Whys). Each technique handles a different dimension of quality. The best prompt engineers combine techniques like a chef combines ingredients — each one adds something the others don't.</div>
+    <div class="quizWhy"><b>Why C?</b> This task has three requirements: structure (RCTFC), specific format (few-shot with your template), and deep reasoning (chain-of-thought for the 5-Whys). The best prompt engineers combine techniques like a coach combines training drills — each one adds something the others don't.</div>
   </div>
 
   
@@ -796,17 +796,17 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   <p class="secLede">Five takeaways to reference every time you write a prompt.</p>
 
   <div class="grid2">
-    <div class="card" style="margin:0"><h4 style="color:var(--orange)">1 · RCTFC anatomy</h4><p style="font-size:14px">Role, Context, Task, Format, Constraints. Same principle as a well-written project brief: specificity in, quality out.</p></div>
+    <div class="card" style="margin:0"><h4 style="color:var(--orange)">1 · RCTFC anatomy</h4><p style="font-size:14px">Role, Context, Task, Format, Constraints. Same principle as a well-written team selection brief: specificity in, quality out.</p></div>
     <div class="card" style="margin:0"><h4 style="color:var(--teal)">2 · Zero-shot vs few-shot</h4><p style="font-size:14px">When output must match a template, show 2-3 examples. The examples ARE the instruction.</p></div>
-    <div class="card" style="margin:0"><h4 style="color:var(--violet)">3 · Chain-of-thought</h4><p style="font-size:14px">For analysis or multi-step reasoning, tell the AI to think step by step. Rubber duck debugging applied to AI.</p></div>
-    <div class="card" style="margin:0"><h4 style="color:var(--gold)">4 · Output formatting</h4><p style="font-size:14px">Define output like a prediction schema: exact fields, headers, keys. If you can sketch it in 10 seconds, the sketch belongs in the prompt.</p></div>
+    <div class="card" style="margin:0"><h4 style="color:var(--violet)">3 · Chain-of-thought</h4><p style="font-size:14px">For analysis or multi-step reasoning, tell the AI to think step by step. The captain's field chat, applied to AI.</p></div>
+    <div class="card" style="margin:0"><h4 style="color:var(--gold)">4 · Output formatting</h4><p style="font-size:14px">Define output like a scorecard: exact fields, headers, order. If you can sketch it in 10 seconds, the sketch belongs in the prompt.</p></div>
   </div>
-  <div class="card" style="border-color:#ff8a2a66;background:linear-gradient(180deg,#fdf1e0,var(--card))"><h4 style="color:var(--orange2)">5 · Iterative refinement</h4><p style="font-size:14.5px">Prompting is debugging, not dictation. Write, read, diagnose, fix one thing, repeat. Nobody ships their first version of a model. Don't ship your first draft of a prompt.</p></div>
+  <div class="card" style="border-color:#ff8a2a66;background:linear-gradient(180deg,#fdf1e0,var(--card))"><h4 style="color:var(--orange2)">5 · Iterative refinement</h4><p style="font-size:14.5px">Prompting is debugging, not dictation. Write, read, diagnose, fix one thing, repeat. Nobody ships their first net session as match technique.</p></div>
 
   <div class="sim">
     <h3>🎯 SIM 7 · Technique Matcher</h3>
     <p class="simSub">A quick game to lock in the full toolkit. Read the scenario, pick the technique you'd reach for first. Instant feedback.</p>
-    <div class="matchScore" id="matchScore">Score 0 / 5</div>
+    <div class="matchScore" id="matchScore">Score 0 / 6</div>
     <div class="matchScenario" id="matchScenario"><span>SCENARIO</span></div>
     <div class="matchBtns" id="matchBtns"></div>
     <div class="matchWhy" id="matchWhy"></div>
@@ -814,12 +814,12 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 
   <h4 style="font-family:var(--sans);font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin:40px 0 6px">Techniques Reference</h4>
   <table class="tbl"><thead><tr><th>Technique</th><th>What It Is</th><th>When to Use</th><th>Real-World Parallel</th></tr></thead><tbody>
-    <tr><td>RCTFC</td><td>Role + Context + Task + Format + Constraints</td><td>Every non-trivial prompt</td><td>Writing a detailed project brief</td></tr>
-    <tr><td>Zero-shot</td><td>Instructions only, no examples</td><td>General tasks, any format OK</td><td>"Build a churn model"</td></tr>
-    <tr><td>Few-shot</td><td>Instructions + 2-3 examples</td><td>Must match specific style/template</td><td>"Build it like these three"</td></tr>
-    <tr><td>Chain-of-thought</td><td>"Think step by step"</td><td>Analysis, debugging, comparison</td><td>Rubber duck debugging</td></tr>
-    <tr><td>Format control</td><td>Show exact output shape</td><td>Always for non-trivial output</td><td>Defining a prediction schema</td></tr>
-    <tr><td>Iterative refinement</td><td>Write, read, fix, repeat</td><td>Every important prompt</td><td>Model review cycle</td></tr>
+    <tr><td>RCTFC</td><td>Role + Context + Task + Format + Constraints</td><td>Every non-trivial prompt</td><td>Writing a full team selection brief</td></tr>
+    <tr><td>Zero-shot</td><td>Instructions only, no examples</td><td>General tasks, any format OK</td><td>"Just bowl well"</td></tr>
+    <tr><td>Few-shot</td><td>Instructions + 2-3 examples</td><td>Must match specific style/template</td><td>"Bowl it like these three deliveries"</td></tr>
+    <tr><td>Chain-of-thought</td><td>"Think step by step"</td><td>Analysis, debugging, comparison</td><td>The captain's field chat</td></tr>
+    <tr><td>Format control</td><td>Show exact output shape</td><td>Always for non-trivial output</td><td>Filling out a proper scorecard</td></tr>
+    <tr><td>Iterative refinement</td><td>Write, read, fix, repeat</td><td>Every important prompt</td><td>Net practice — one adjustment per ball</td></tr>
   </tbody></table>
 
   <p class="bigQuote">"The model didn't get smarter between two prompts. <em>You</em> did."</p>
@@ -849,29 +849,30 @@ document.querySelectorAll('.quiz').forEach(q=>{const opts=q.querySelectorAll('.o
 (()=>{
 const PA=`SUMMARISE THIS MEETING.
 
-Model Design Review \u2014 Customer Churn
-Prediction Project
-11 April 2025, 10:00-10:50 AM
-Attendees: Priya, Aisha, Karan, Neha, Vikram
+Team India T20 Rebuild \u2014 Post-Series
+Review
+13 July 2026, 10:00-10:50 AM
+Attendees: Coach, Meera, Karan, Neha, Vikram
 
-- churn model at 68%, needs 85%+
-- build in 3 stages: feature / training /
-  prediction pipelines
-- prediction-service must mask PII
-- aisha builds XGBoost v1 by 25 apr
-- karan: feature list by 20 apr
+- T20 win rate under 40%, needs 65%+
+- rebuild in 3 stages: domestic-scouting /
+  A-team trial / senior-XI pipelines
+- fitness data must be anonymized
+- meera builds batting order model v1 by 25 jul
+- karan: probable-30 list by 20 jul
 - ... (all raw notes pasted)`;
-const PB=`Role: You are a senior data scientist who
-writes clear, actionable design review
-summaries for data science teams.
+const PB=`Role: You are a senior performance analyst
+who writes clear, actionable post-series
+review summaries for national selection
+committees.
 
-Context: I'm a junior ML engineer. We held a
-50-min design review for a customer churn
-prediction system. Posted in team Slack,
-referenced during sprint planning.
+Context: I'm a junior analyst. We held a
+50-min post-series review for the T20 team's
+rebuild. Going to the chief selector tonight
+as a same-day report.
 
 Task: Turn the raw notes into a structured
-design review summary.
+post-series review summary.
 
 Format:
 1. Overview (max 2 sentences)
@@ -885,33 +886,33 @@ Constraints:
 - Under 500 words.
 - Unknown owner/deadline \u2192 "TBD".
 - Do not invent details.
-- Precise technical language, no jargon.
+- Precise language, no jargon.
 
-Notes: [Aisha's design review notes]`;
+Notes: [Meera's post-series review notes]`;
 const OA=`<span class="lbl">TYPICAL OUTPUT</span>
-<div class="sec">Goal</div>Current churn model is 68%; target 85%+. Plan to rebuild as an ML pipeline.
-<div class="sec">Architecture</div>Split into feature / training / prediction stages. Automated retraining. Data warehouse + feature store, version tracking. PII masked before the model.
-<div class="sec">Open Decisions</div>Monitoring (drift vs accuracy), fairness thresholds, model-switch strategy, rollback plan.
-<div class="sec">Action Items</div>Aisha: XGBoost v1 by 25 Apr. Karan: feature list 20 Apr. Priya: comparison doc 18 Apr. Neha: dashboards + metrics 22 Apr, holdout test.
+<div class="sec">Goal</div>Current T20 win rate is under 40%; target 65%+. Plan to rebuild selection as a 3-stage pipeline.
+<div class="sec">Architecture</div>Split into domestic-scouting / A-team trial / senior-XI stages. Auto-refreshed monthly rankings. Match footage/scorecards \u2192 analytics database, processed metrics \u2192 performance dashboard. Fitness data anonymized before broadcasters.
+<div class="sec">Open Decisions</div>Monitoring (recent form vs career average), fairness/zonal metrics, mid-contract replacement policy, rollback plan.
+<div class="sec">Action Items</div>Karan: probable-30 list by 20 Jul. Meera: batting order model v1 by 25 Jul. Neha: dashboard metrics list 22 Jul. Karan: domestic/A-team testing before senior selection.
 <p style="color:var(--rose);margin-top:8px;font-size:12px">Readable, but no dependency tracking, no TBD-vs-decided separation, no ownership accountability.</p>`;
 const OB=`<span class="lbl">STRUCTURED OUTPUT</span>
-<h5>1. Overview</h5>Reviewed design for a new churn prediction system to replace the 68% rule-based approach, targeting 85%+.
-<div class="sec">2. Key Decisions</div>3 pipeline stages \u00B7 automated retraining \u00B7 warehouse + feature store + version tracking \u00B7 PII masking \u00B7 dashboards.
+<h5>1. Overview</h5>Reviewed the T20 rebuild plan to lift the win rate from under 40% to 65%+ before the next ICC event via a 3-stage selection pipeline.
+<div class="sec">2. Key Decisions</div>3-stage pipeline (scouting \u00B7 trials \u00B7 senior XI) \u00B7 monthly auto-refreshed rankings \u00B7 analytics database + performance dashboard \u00B7 fitness data anonymized \u00B7 dashboards.
 <div class="sec">3. Action Items</div>
 <table><thead><tr><th>Action</th><th>Owner</th><th>Due</th><th>Blocked By</th></tr></thead><tbody>
-<tr><td>XGBoost v1</td><td>Aisha</td><td>25 Apr</td><td>None</td></tr>
-<tr><td>Feature list</td><td>TBD</td><td>20 Apr</td><td>None</td></tr>
-<tr><td>Drift-vs-acc doc</td><td>TBD</td><td>18 Apr</td><td>None</td></tr>
-<tr><td>Dashboards</td><td>Neha</td><td>TBD</td><td>Metrics list</td></tr>
-<tr><td>Holdout test</td><td>Neha</td><td>TBD</td><td>Aisha's prototype</td></tr>
+<tr><td>Probable-30 list</td><td>Karan</td><td>20 Jul</td><td>None</td></tr>
+<tr><td>Batting order model v1</td><td>Meera</td><td>25 Jul</td><td>None</td></tr>
+<tr><td>Form-vs-average doc</td><td>TBD</td><td>18 Jul</td><td>None</td></tr>
+<tr><td>Dashboard metrics list</td><td>Neha</td><td>22 Jul</td><td>None</td></tr>
+<tr><td>Domestic/A-team testing</td><td>Karan</td><td>TBD</td><td>Probable-30 list</td></tr>
 </tbody></table>
-<div class="sec">4. Open Questions</div>Drift vs accuracy (no owner) \u00B7 fairness metrics \u00B7 mid-campaign model switch \u00B7 rollback.
-<div class="sec">5. Risks</div>Comparison doc has no owner \u2192 blocks monitoring. Feature list may conflict with prototype timeline. Rollback plan entirely missing.`;
+<div class="sec">4. Open Questions</div>Recent form vs career average (no owner) \u00B7 zonal fairness metrics \u00B7 mid-contract replacement policy \u00B7 rollback plan.
+<div class="sec">5. Risks</div>Form-metric doc has no owner \u2192 blocks a clean selection rationale. Probable-30 slippage cascades into trials and the batting model. Rollback plan entirely missing.`;
 const p=document.getElementById('abPrompt'),o=document.getElementById('abOut'),g=document.getElementById('abGap');
 const set=ab=>{
   document.querySelectorAll('#abToggle button').forEach(b=>b.classList.toggle('on',b.dataset.ab===ab));
-  if(ab==='a'){p.innerHTML='<span class="lbl">PROMPT A \u00B7 NO STRUCTURE</span>'+PA;o.innerHTML=OA;g.innerHTML='<b>Prompt A gap:</b> the model restates the notes. Aisha\'s lead would still have to do the thinking \u2014 which task blocks which, what\'s decided vs TBD, who owns what.';}
-  else{p.innerHTML='<span class="lbl">PROMPT B \u00B7 RCTFC STRUCTURED</span>'+PB;o.innerHTML=OB;g.innerHTML='<b>What Prompt B added:</b> Role + Context + Format + Constraints. Decisions separated from action items, a table tracking owners and blockers, distinct lists for open questions and risks. Paste-ready for Slack.';}
+  if(ab==='a'){p.innerHTML='<span class="lbl">PROMPT A \u00B7 NO STRUCTURE</span>'+PA;o.innerHTML=OA;g.innerHTML='<b>Prompt A gap:</b> the model restates the notes. The coach would still have to do the thinking \u2014 which task blocks which, what\'s decided vs TBD, who owns what.';}
+  else{p.innerHTML='<span class="lbl">PROMPT B \u00B7 RCTFC STRUCTURED</span>'+PB;o.innerHTML=OB;g.innerHTML='<b>What Prompt B added:</b> Role + Context + Format + Constraints. Decisions separated from action items, a table tracking owners and blockers, distinct lists for open questions and risks. Paste-ready for the committee.';}
 };
 document.querySelectorAll('#abToggle button').forEach(b=>b.onclick=()=>set(b.dataset.ab));
 set('a');
@@ -920,9 +921,9 @@ set('a');
 /* ===== SIM 2: RCTFC Builder ===== */
 (()=>{
 const parts={
- R:{label:'Role',text:'Role: You are a senior data scientist who writes clear, actionable design review summaries.'},
- C1:{label:'Context',text:'Context: I\'m a junior ML engineer. Design review for a churn prediction system, posted in Slack for sprint planning.'},
- T:{label:'Task',text:'Task: Turn the raw meeting notes below into a structured design review summary.'},
+ R:{label:'Role',text:'Role: You are a senior performance analyst who writes clear, actionable post-series review summaries.'},
+ C1:{label:'Context',text:'Context: I\'m a junior analyst. Post-series review for the T20 rebuild, going to the chief selector tonight.'},
+ T:{label:'Task',text:'Task: Turn the raw meeting notes below into a structured post-series review summary.'},
  F:{label:'Format',text:'Format: 1) Overview 2) Key Decisions 3) Action Items table 4) Open Questions 5) Risks.'},
  C2:{label:'Constraints',text:'Constraints: under 500 words, "TBD" for unknowns, do not invent details.'}
 };
@@ -948,17 +949,17 @@ render();
 
 /* ===== SIM 3: Zero vs Few shot ===== */
 (()=>{
-const zeroDesc=`"Extract the action items from the design review notes below and format them as a structured list."<br><br><span style="color:var(--rose)">The AI knows WHAT to do but not what the output should look like. It returns a reasonable list \u2014 in its own default format.</span>`;
-const fewDesc=`Same task, but 3 examples of the team's exact 7-field format are pasted first (TASK / OWNER / DEADLINE / PRIORITY / STATUS / BLOCKED BY / DECISION REF).<br><br><span style="color:var(--green)">The examples ARE the instruction. The model can now SEE the shape to replicate.</span>`;
-const zeroFields=['TASK: Build first model version using XGBoost','OWNER: Aisha','DEADLINE: 25 Apr','NOTES: Priya to review prototype'];
+const zeroDesc=`"Extract the action items from the post-series review notes below and format them as a structured list."<br><br><span style="color:var(--rose)">The AI knows WHAT to do but not what the output should look like. It returns a reasonable list \u2014 in its own default format.</span>`;
+const fewDesc=`Same task, but 3 examples of the committee's exact 7-field format are pasted first (TASK / OWNER / DEADLINE / PRIORITY / STATUS / BLOCKED BY / NOTES).<br><br><span style="color:var(--green)">The examples ARE the instruction. The model can now SEE the shape to replicate.</span>`;
+const zeroFields=['TASK: Finalize the probable-30 list','OWNER: Karan','DEADLINE: 20 Jul','NOTES: Coach to review before trials'];
 const fewFields=[
- {t:'TASK: Build first model version using XGBoost',n:0},
- {t:'OWNER: Aisha (ML Engineer)',n:0},
- {t:'DEADLINE: 25 Apr 2025',n:0},
- {t:'PRIORITY: P1 - Critical',n:1},
- {t:'STATUS: Not Started',n:1},
+ {t:'TASK: Finalize the probable-30 list',n:0},
+ {t:'OWNER: Karan (Talent Scout)',n:0},
+ {t:'DEADLINE: 20 Jul 2026',n:0},
+ {t:'PRIORITY: High',n:1},
+ {t:'STATUS: In Progress',n:1},
  {t:'BLOCKED BY: None',n:1},
- {t:'DECISION REF: Pipeline split agreed in review (11 Apr 2025)',n:1}
+ {t:'NOTES: Needed before A-team trials can begin',n:1}
 ];
 const pd=document.getElementById('fsPromptDesc'),ff=document.getElementById('fsFields'),g=document.getElementById('fsGap');
 const set=fs=>{
@@ -966,11 +967,11 @@ const set=fs=>{
   if(fs==='zero'){
     pd.innerHTML=zeroDesc;
     ff.innerHTML=zeroFields.map(f=>'<div class="fsField">'+f+'</div>').join('');
-    g.innerHTML='<b>Zero-shot result:</b> correct information, but not in Aisha\'s team format. No priority, no dependency tracking, no status, no decision reference. Like a teammate who writes clearly but ignores your template.';
+    g.innerHTML='<b>Zero-shot result:</b> correct information, but not in the committee\'s format. No priority, no status, no blocked-by tracking, no notes field. Like a teammate who writes clearly but ignores your template.';
   }else{
     pd.innerHTML=fewDesc;
     ff.innerHTML=fewFields.map(f=>'<div class="fsField'+(f.n?' newf':'')+'">'+f.t+'</div>').join('');
-    g.innerHTML='<b>Few-shot result:</b> the model now produces the exact 7-field structure. It assigns priorities from context, fills BLOCKED BY relationships, and writes TBD for unassigned owners. The <span style="color:var(--green)">green fields</span> are what examples unlocked.';
+    g.innerHTML='<b>Few-shot result:</b> the model now produces the exact 7-field structure. It assigns priority from context, fills BLOCKED BY relationships, and writes TBD for unassigned owners. The <span style="color:var(--green)">green fields</span> are what examples unlocked.';
   }
 };
 document.querySelectorAll('#fsToggle button').forEach(b=>b.onclick=()=>set(b.dataset.fs));
@@ -994,41 +995,41 @@ document.getElementById('cotReset').onclick=()=>{clear();steps.forEach(s=>s.clas
 /* ===== SIM 5: Output format switcher ===== */
 (()=>{
 const outs={
- slack:`<div class="cap">Format A \u00B7 Slack update \u2014 one sentence per decision</div><ol>
-<li>The team agreed to rebuild the churn system as 3 stages (feature / training / prediction) to raise accuracy from 68% to 85%+.</li>
-<li>The team agreed the prediction-service must mask customer PII before any data reaches the model.</li>
-<li>The team agreed to store raw events in the warehouse and features in a feature store, with version tracking from the start.</li>
-<li>The team agreed to build an automated retraining pipeline feeding scheduled retrains.</li>
-<li>The team agreed Aisha builds the XGBoost v1 by 25 Apr and Karan provides the feature list by 20 Apr.</li>
+ wa:`<div class="cap">Format A \u00B7 WhatsApp update \u2014 plain language, one message</div><ol>
+<li>Review's done. Probable-30 due 20 Jul (Karan), batting model due 25 Jul (me).</li>
+<li>Form-metric decision still open \u2014 no owner yet, flagging that one to you separately.</li>
+<li>Rollback plan also needs a slot on the next agenda.</li>
 </ol>`,
- table:`<div class="cap">Format B \u00B7 Sprint planning table</div>
-<table><thead><tr><th>Task</th><th>Owner</th><th>Deadline</th><th>Priority</th><th>Blocked By</th></tr></thead><tbody>
-<tr><td>Build XGBoost v1</td><td>Aisha</td><td>25 Apr</td><td>P1</td><td>None</td></tr>
-<tr><td>Provide feature list</td><td>TBD</td><td>20 Apr</td><td>P1</td><td>None</td></tr>
-<tr><td>Drift vs accuracy doc</td><td>TBD</td><td>18 Apr</td><td>P1</td><td>None</td></tr>
-<tr><td>Model-swap strategy</td><td>TBD</td><td>TBD</td><td>P0</td><td>None</td></tr>
-<tr><td>PII masking</td><td>Neha</td><td>TBD</td><td>P0</td><td>None</td></tr>
-<tr><td>Monitoring dashboards</td><td>Neha</td><td>TBD</td><td>P1</td><td>Metrics list</td></tr>
-<tr><td>Holdout test</td><td>Neha</td><td>TBD</td><td>P1</td><td>Aisha's prototype</td></tr>
+ table:`<div class="cap">Format B \u00B7 Selection tracking table</div>
+<table><thead><tr><th>Action Item</th><th>Owner</th><th>Deadline</th><th>Status</th></tr></thead><tbody>
+<tr><td>Finalize probable-30 list</td><td>Karan</td><td>20 Jul</td><td>In Progress</td></tr>
+<tr><td>Batting order model v1</td><td>Meera</td><td>25 Jul</td><td>In Progress</td></tr>
+<tr><td>Fitness dashboard metrics</td><td>Neha</td><td>22 Jul</td><td>Not Started</td></tr>
+<tr><td>Form-metric comparison</td><td>TBD</td><td>18 Jul</td><td>Unowned</td></tr>
 </tbody></table>`,
- json:`<div class="cap">Format C \u00B7 Machine-readable JSON</div><span class="jp2">[</span>
-  <span class="jp2">{</span>
-    <span class="jk2">"task"</span><span class="jp2">:</span> <span class="jv">"Build first XGBoost model version"</span><span class="jp2">,</span>
-    <span class="jk2">"owner"</span><span class="jp2">:</span> <span class="jv">"Aisha (ML Engineer)"</span><span class="jp2">,</span>
-    <span class="jk2">"deadline"</span><span class="jp2">:</span> <span class="jv">"2025-04-25"</span><span class="jp2">,</span>
-    <span class="jk2">"priority"</span><span class="jp2">:</span> <span class="jv">"P1"</span><span class="jp2">,</span>
-    <span class="jk2">"status"</span><span class="jp2">:</span> <span class="jv">"not_started"</span><span class="jp2">,</span>
-    <span class="jk2">"blocked_by"</span><span class="jp2">:</span> <span class="jn">null</span><span class="jp2">,</span>
-    <span class="jk2">"component"</span><span class="jp2">:</span> <span class="jv">"training-pipeline"</span>
-  <span class="jp2">},</span>
-  <span class="jp2">{</span>
-    <span class="jk2">"task"</span><span class="jp2">:</span> <span class="jv">"Provide final feature list"</span><span class="jp2">,</span>
-    <span class="jk2">"owner"</span><span class="jp2">:</span> <span class="jv">"TBD"</span><span class="jp2">,</span>
-    <span class="jk2">"deadline"</span><span class="jp2">:</span> <span class="jv">"2025-04-20"</span><span class="jp2">,</span>
-    <span class="jk2">"blocked_by"</span><span class="jp2">:</span> <span class="jn">null</span><span class="jp2">,</span>
-    <span class="jk2">"component"</span><span class="jp2">:</span> <span class="jv">"feature-pipeline"</span>
-  <span class="jp2">}</span>
-<span class="jp2">]</span>`
+ json:`<div class="cap">Format C \u00B7 Machine-readable JSON</div><span class="jp2">{</span>
+  <span class="jk2">"review_date"</span><span class="jp2">:</span> <span class="jv">"2026-07-13"</span><span class="jp2">,</span>
+  <span class="jk2">"action_items"</span><span class="jp2">:</span> <span class="jp2">[</span>
+    <span class="jp2">{</span>
+      <span class="jk2">"task"</span><span class="jp2">:</span> <span class="jv">"Finalize probable-30 list"</span><span class="jp2">,</span>
+      <span class="jk2">"owner"</span><span class="jp2">:</span> <span class="jv">"Karan"</span><span class="jp2">,</span>
+      <span class="jk2">"deadline"</span><span class="jp2">:</span> <span class="jv">"2026-07-20"</span><span class="jp2">,</span>
+      <span class="jk2">"priority"</span><span class="jp2">:</span> <span class="jv">"high"</span>
+    <span class="jp2">},</span>
+    <span class="jp2">{</span>
+      <span class="jk2">"task"</span><span class="jp2">:</span> <span class="jv">"Batting order model v1"</span><span class="jp2">,</span>
+      <span class="jk2">"owner"</span><span class="jp2">:</span> <span class="jv">"Meera"</span><span class="jp2">,</span>
+      <span class="jk2">"deadline"</span><span class="jp2">:</span> <span class="jv">"2026-07-25"</span><span class="jp2">,</span>
+      <span class="jk2">"priority"</span><span class="jp2">:</span> <span class="jv">"high"</span>
+    <span class="jp2">}</span>
+  <span class="jp2">],</span>
+  <span class="jk2">"open_risks"</span><span class="jp2">:</span> <span class="jp2">[</span><span class="jv">"form-metric decision unowned"</span><span class="jp2">,</span> <span class="jv">"rollback plan undiscussed"</span><span class="jp2">]</span>
+<span class="jp2">}</span>`,
+ card:`<div class="cap">Format D \u00B7 Player Report Card</div><h5>Yash Deshmukh \u2014 uncapped domestic all-rounder</h5>
+<div style="font-weight:700;color:#ffd166;margin-top:8px">Role &amp; Style</div>Middle-order, right-arm medium, death-overs option
+<div style="font-weight:700;color:#ffd166;margin-top:8px">Recent Form</div>612 runs @ 51.0 in last 10 domestic T20s, SR 148
+<div style="font-weight:700;color:#ffd166;margin-top:8px">Fitness Status</div>Green, no workload flags in last 6 weeks
+<div style="font-weight:700;color:#ffd166;margin-top:8px">Risk Flags</div>Untested at international pace bowling above 140kph`
 };
 const out=document.getElementById('fmtOut');
 const set=f=>{
@@ -1037,31 +1038,31 @@ const set=f=>{
   out.innerHTML=outs[f];
 };
 document.querySelectorAll('#fmtTabs .fmtTab').forEach(b=>b.onclick=()=>set(b.dataset.f));
-set('slack');
+set('wa');
 })();
 
 /* ===== SIM 6: Five-round refinement ===== */
 (()=>{
 const rounds=[
  {label:'Vague',el:'\u2014 no element',qual:8,qtxt:'AI invents everything',
-  prompt:'Write an email about the design review action items.',
-  out:'A generic, hypothetical email about "action items" \u2014 no real names, no real tasks, useless.',
+  prompt:'Write a message about the post-series review action items.',
+  out:'A generic, hypothetical message about "action items" \u2014 no real names, no real tasks, useless.',
   change:'<b>Round 1:</b> Bare question. No audience, no context, no source material. The model has nothing to ground its answer in, so it makes things up.'},
  {label:'Context added',el:'Context',qual:38,qtxt:'Factual but unstructured',
-  prompt:'I attended a design review for our churn prediction model. Write an email to my team lead summarising the action items.\n\nNotes: [Aisha\'s notes]',
-  out:'Now grounded in the real notes and addressed to Priya \u2014 but likely a wall of text with no clear sections.',
-  change:'<b>Round 2:</b> Added source notes + recipient. The email is factual now, but still a shapeless paragraph.'},
+  prompt:'I attended a post-series review for the T20 rebuild. Write a message to my coach summarising the action items.\n\nNotes: [Meera\'s notes]',
+  out:'Now grounded in the real notes and addressed to the coach \u2014 but likely a wall of text with no clear sections.',
+  change:'<b>Round 2:</b> Added source notes + recipient. The message is factual now, but still a shapeless paragraph.'},
  {label:'Structured',el:'Role + Format',qual:62,qtxt:'Structured but generic',
-  prompt:'Role: junior ML engineer writing a follow-up to your DS lead.\nContext: design review for the churn pipeline.\nTask: draft an email with:\n1. Subject 2. One-line summary\n3. My action items 4. Concerns 5. Questions\n\nNotes: [Aisha\'s notes]',
+  prompt:'Role: junior performance analyst writing a follow-up to your head coach.\nContext: post-series review for the T20 rebuild.\nTask: draft a message with:\n1. Subject 2. One-line summary\n3. My action items 4. Concerns 5. Questions\n\nNotes: [Meera\'s notes]',
   out:'Clean sections appear: subject, summary, owned items, concerns, questions. But it may be too long and the tone can drift.',
   change:'<b>Round 3:</b> Added a persona and explicit sections. Structure is there \u2014 now we tighten length and tone.'},
  {label:'Sharp',el:'Constraints',qual:82,qtxt:'Tight and professional',
-  prompt:'Role: junior ML engineer \u2192 DS lead.\nContext: churn pipeline review. Priya reads on her phone between meetings.\nTask: email with subject, one-line summary, committed-items table, max-3 concerns (each with impact + fix), max-4 open questions.\nConstraints: under 300 words, direct peer-to-peer tone, name each concern\'s downstream impact, sign off as Aisha.\n\nNotes: [Aisha\'s notes]',
+  prompt:'Role: junior analyst \u2192 head coach.\nContext: T20 rebuild review. Coach reads on his phone between meetings.\nTask: message with subject, one-line summary, committed-items table, max-3 concerns (each with impact + fix), max-4 open questions.\nConstraints: under 300 words, direct peer-to-peer tone, name each concern\'s downstream impact, sign off as Meera.\n\nNotes: [Meera\'s notes]',
   out:'Tight, professional, scannable. A table for committed items, three sharp concerns each with a suggested fix. Genuinely sendable.',
-  change:'<b>Round 4:</b> Added length, tone, and specificity rules (Constraints). The email is now something Priya can act on in 30 seconds.'},
+  change:'<b>Round 4:</b> Added length, tone, and specificity rules (Constraints). The message is now something the coach can act on in 30 seconds.'},
  {label:'Production-ready',el:'Reasoning layer',qual:100,qtxt:'Dependency-aware risk analysis',
-  prompt:'... (all of Round 4) ...\n\nBefore writing Concerns, internally map every task\'s dependencies to find which delays cascade the most. Select the three with the highest blast radius.\n\nConstraints: under 350 words, do not invent facts, TBD for unknowns, sign off as Aisha.',
-  out:'Same tight email \u2014 but now the three concerns are the highest-blast-radius ones, each naming the exact dependency chain it threatens. Production-quality.',
+  prompt:'... (all of Round 4) ...\n\nBefore writing Concerns, internally map every task\'s dependencies to find which delays cascade the most. Select the three with the highest blast radius.\n\nConstraints: under 350 words, do not invent facts, TBD for unknowns, sign off as Meera.',
+  out:'Same tight message \u2014 but now the three concerns are the highest-blast-radius ones, each naming the exact dependency chain it threatens. Production-quality.',
   change:'<b>Round 5:</b> Added chain-of-thought for the analysis section. The model reasons about dependencies before writing, so the concerns are prioritised by real cascade impact.'}
 ];
 const slider=document.getElementById('roundSlider');
@@ -1094,11 +1095,12 @@ document.querySelectorAll('.passList').forEach(list=>{
 /* ===== SIM 7: Technique Matcher ===== */
 (()=>{
 const Q=[
- {s:'You need output that matches your team\'s exact model-card template, section for section.',opts:['Few-shot','Chain-of-thought','Zero-shot'],a:0,why:'Show 2-3 real examples \u2014 the examples ARE the instruction.'},
- {s:'You want the AI to trace which delayed task cascades into the most downstream work.',opts:['Format control','Chain-of-thought','Few-shot'],a:1,why:'Reasoning task \u2192 ask it to think step by step before answering.'},
- {s:'The answer is correct and well-structured, but the tone is too formal for Slack.',opts:['Rewrite from scratch','Add a tone constraint','Switch models'],a:1,why:'The output was close \u2014 fix one thing surgically, then re-run.'},
+ {s:'You need output that matches your committee\'s exact report template, section for section.',opts:['Few-shot','Chain-of-thought','Zero-shot'],a:0,why:'Show 2-3 real examples \u2014 the examples ARE the instruction.'},
+ {s:'You want the AI to work out which of several injuries risks the death-overs plan most.',opts:['Few-shot','Chain-of-thought','Zero-shot'],a:1,why:'Reasoning task \u2192 ask it to think step by step before answering.'},
+ {s:'The answer is correct and well-structured, but the tone is too formal for a WhatsApp update.',opts:['Rewrite from scratch','Add a tone constraint','Switch models'],a:1,why:'The output was close \u2014 fix one thing surgically, then re-run.'},
  {s:'You\'re starting a brand-new, simple summary task with no template requirement.',opts:['Zero-shot','Few-shot','Chain-of-thought'],a:0,why:'Instructions alone are enough when any reasonable format is fine.'},
- {s:'You need the same info as a Slack post, a JSON payload, and a sprint table.',opts:['Chain-of-thought','Output format control','Zero-shot'],a:1,why:'Define the exact shape per audience \u2014 same info, four schemas.'}
+ {s:'You need the same info as a WhatsApp update, a JSON payload, and a selection table.',opts:['Chain-of-thought','Output format control','Zero-shot'],a:1,why:'Define the exact shape per audience \u2014 same info, different schemas.'},
+ {s:'Every non-trivial prompt needs a role, context, task, format and constraints.',opts:['Few-shot','Chain-of-thought','RCTFC'],a:2,why:'RCTFC is the baseline structure \u2014 reach for it before any other technique.'}
 ];
 let i=0,score=0;
 const sc=document.getElementById('matchScore'),scen=document.getElementById('matchScenario'),btns=document.getElementById('matchBtns'),why=document.getElementById('matchWhy');
